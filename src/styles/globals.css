@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* styles for big calendar */
+.rbc-header {
+    background: #2f0f5b !important;
+    color: #fff;
+    padding-bottom: .6rem;
+    font-size: 1rem;
+}
+
+.rbc-time-slot {
+    /* background-color: #eaf3fa; */
+    color: #2f0f5b;
+}
+
+.rbc-events-container {
+    width: 100%;
+    overflow: visible !important;
+}
+
+.rbc-addons-dnd-resizable {
+    overflow: visible !important;
+}
+
+.rbc-event-content {
+    overflow: visible !important;
+}
+
+.rbc-event {
+    overflow: visible !important;
+}
+
+.rbc-event-label {
+    display: none !important;
+}
+
+.rbc-event {
+    padding: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #2f0f5b !important;
+    background-color: transparent !important;
+}
+
+.rbc-addons-dnd-resizable { 
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.rbc-time-slot {
+    border-color: #b19cd9 !important; 
+}
+
+.rbc-allday-cell {
+    display: none !important;
+}
+
+.rbc-current-time-indicator {
+    z-index: 1 !important;
+}
+
+.rbc-toolbar-label {
+    color: #2f0f5b;
+}
