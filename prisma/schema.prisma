@@ -1,0 +1,702 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+model Account {
+    id                          String          @id @default(cuid())
+    externalId                  String?         @unique
+    createdAt                   DateTime        @default(now())
+    updatedAt                   DateTime        @updatedAt
+    email                       String          @unique
+    preferredName               String?
+    firstName                   String
+    lastName                    String
+    middleInitial               String?
+    phone                       String?
+    birthDay                    DateTime?
+    referringAgency             String?
+    agency                      String?
+    agencyPhone                 String?
+    locationId                  String?
+    location                    Location?       @relation(fields: [locationId], references: [id])
+    preferText                  Boolean         @default(false)
+    address                     String?
+    address2                    String?
+    city                        String?
+    stateId                     String?
+    state                       State?          @relation(fields: [stateId], references: [id])
+    zip                         String?
+    accountStatusId             String?
+    accountStatus               AccountStatus?  @relation(fields: [accountStatusId], references: [id])
+    accountTypeId               String?
+    accountType                 AccountType?    @relation(fields: [accountTypeId], references: [id])
+    agentTypeId                 String?
+    agentType                   AgentType?      @relation(fields: [agentTypeId], references: [id])
+    accountRequests             AccountRequest[]
+    accountPolicies             AccountPolicies[]
+    accountSignatures           AccountSignature[]
+    documents                   Document[]
+    documentLogs                DocumentLog[]
+    incidents                   Incident[]
+    uploadErrorLogs             UploadErrorLog[]
+    clientIncidents             ClientIncidents[]
+    requiredAssessments         RequiredAssessments[]
+    clientAssessmentAnswers     ClientAssessmentAnswers[]
+    domainScoreCard             DomainScoreCard[]
+    clientCalendarEvents        ClientCalendarEvent[]
+    clientAccessLimits          ClientAccessLimits[]
+    calendarEvents              CalendarEvent[]
+    clients                     RequireIncident[]   @relation("Clients")
+    clinicians                  RequireIncident[]   @relation("Clinicians")
+    clientRequirements          ClientRequirement[]
+    clientPrices                ClientPrice[]
+    discountPrices              DiscountPrice[]
+    messages                    Message[]
+    clientNotes                 ClinicalNote[]      @relation("Clients")
+    clinicianNotes              ClinicalNote[]      @relation("Clinicians")
+    clientContacts              Contact[]           @relation("Clients")
+    agentContacts               Contact[]           @relation("Agents")
+    accountFinancials           AccountFinancial[]
+    requiredGoals               RequiredGoals[]
+    clientGoalAnswers           ClientGoalAnswers[]
+    clientAlerts                ClientAlerts[]
+    clientParticipationNotes    ClientParticipationNotes[]
+
+    @@index([locationId])
+    @@index([stateId])
+    @@index([accountStatusId])
+    @@index([accountTypeId])
+    @@index([agentTypeId])
+}
+
+model AccountStatus {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    name      String
+    accounts  Account[]
+}
+
+model AccountType {
+    id                  String   @id @default(cuid())
+    createdAt           DateTime @default(now())
+    updatedAt           DateTime @updatedAt
+    name                String
+    accounts            Account[]
+    requiredPolicies    RequiredPolicies[] 
+}
+
+model AgentType {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    name      String
+    accounts  Account[]
+    contacts  Contact[]
+}
+
+model State {
+    id              String   @id @default(cuid())
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+    name            String
+    abbreviation    String
+    accounts        Account[]
+    locations       Location[]
+}
+
+model Location {
+    id              String   @id @default(cuid())
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+    name            String
+    accounts        Account[]
+    address         String?
+    address2        String?
+    city            String?
+    stateId         String?
+    state           State?    @relation(fields: [stateId], references: [id])
+    zip             String?
+    calendarEvents  CalendarEvent[]
+
+    @@index([stateId])
+}
+
+model AccountRequest {
+    id                  String          @id @default(cuid())
+    createdAt           DateTime        @default(now())
+    updatedAt           DateTime        @updatedAt
+    accountId           String?
+    account             Account?        @relation(fields: [accountId], references: [id])
+    contactMethod       String
+    contactTime         String
+    message             String?
+    requestStatusId     String?
+    requestStatus       RequestStatus?  @relation(fields: [requestStatusId], references: [id])
+
+    @@index([accountId])
+    @@index([requestStatusId])
+}
+
+model RequestStatus {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    name      String
+    requests  AccountRequest[]
+}
+
+model Policy {
+    id                  String          @id @default(cuid())
+    createdAt           DateTime        @default(now())
+    updatedAt           DateTime        @updatedAt
+    title               String
+    content             String
+    documentTypeId      String
+    documentType        DocumentType    @relation(fields: [documentTypeId], references: [id])
+    accountPolicies     AccountPolicies[]
+    requiredPolicies    RequiredPolicies[]
+
+    @@index([documentTypeId])
+}
+
+model DocumentType {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    name            String
+    policies        Policy[]
+    documents       Document[]
+}
+
+model AccountPolicies {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    accountId       String?
+    account         Account?        @relation(fields: [accountId], references: [id])
+    policyId        String?
+    policy          Policy?         @relation(fields: [policyId], references: [id])
+    signed          Boolean         @default(false)
+    rejected        Boolean         @default(false)
+
+    @@index([accountId])
+    @@index([policyId])
+}
+
+model RequiredPolicies {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    policyId        String
+    policy          Policy          @relation(fields: [policyId], references: [id])
+    accountTypeId   String
+    accountType     AccountType     @relation(fields: [accountTypeId], references: [id])
+
+    @@index([policyId])
+    @@index([accountTypeId])
+}
+
+model AccountSignature {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    accountId       String          @unique
+    account         Account         @relation(fields: [accountId], references: [id])
+    signature       String          @db.Text
+
+    @@index([accountId])
+}
+
+model Document {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    url             String
+    documentTypeId  String
+    documentType    DocumentType    @relation(fields: [documentTypeId], references: [id])
+    accountId       String
+    account         Account         @relation(fields: [accountId], references: [id])
+
+    @@index([documentTypeId])
+    @@index([accountId])
+}
+
+model DocumentLog {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    url             String
+    accountId       String
+    account         Account         @relation(fields: [accountId], references: [id])
+    action          String
+
+    @@index([accountId])
+}
+
+model IncidentType {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    name            String
+    incidents       Incident[]
+}
+
+model Incident {
+    id                  String              @id @default(cuid())
+    createdAt           DateTime            @default(now())
+    updatedAt           DateTime            @updatedAt
+    incidentTypeId      String
+    incidentType        IncidentType        @relation(fields: [incidentTypeId], references: [id])
+    accountId           String
+    account             Account             @relation(fields: [accountId], references: [id])
+    completed           Boolean             @default(false)
+    url                 String?
+    comment             String?             @db.VarChar(1500)
+    clientIncidents     ClientIncidents[]
+
+    @@index([incidentTypeId])
+    @@index([accountId])
+}
+
+model UploadErrorLog {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    url             String
+    accountId       String
+    account         Account         @relation(fields: [accountId], references: [id])
+    error           String
+
+    @@index([accountId])
+}
+
+model IncidentCategory {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    name            String
+    clientIncidents ClientIncidents[]
+}
+
+model ClientIncidents {
+    id                      String              @id @default(cuid())
+    createdAt               DateTime            @default(now())
+    updatedAt               DateTime            @updatedAt
+    accountId               String
+    account                 Account             @relation(fields: [accountId], references: [id])
+    incidentId              String
+    incident                Incident            @relation(fields: [incidentId], references: [id])
+    incidentCategoryId      String
+    incidentCategory        IncidentCategory    @relation(fields: [incidentCategoryId], references: [id])
+
+    @@index([accountId])
+    @@index([incidentId])
+    @@index([incidentCategoryId])
+}
+
+model RequiredAssessments {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    assessmentId    String
+    assessment      Assessment  @relation(fields: [assessmentId], references: [id])
+    accountId       String
+    account         Account     @relation(fields: [accountId], references: [id])
+    completed       Boolean     @default(false)
+
+    @@index([accountId])
+    @@index([assessmentId])
+}
+
+model Assessment {
+    id                      String          @id @default(cuid())
+    createdAt               DateTime        @default(now())
+    updatedAt               DateTime        @updatedAt
+    name                    String
+    description             String
+    url                     String          @default("")
+    questions               Question[]
+    requiredAssessments     RequiredAssessments[]
+    clientAssessmentAnswers ClientAssessmentAnswers[]
+}
+
+model Question {
+    id                      String          @id @default(cuid())
+    createdAt               DateTime        @default(now())
+    updatedAt               DateTime        @updatedAt
+    assessmentId            String
+    assessment              Assessment      @relation(fields: [assessmentId], references: [id])
+    question                String          @db.VarChar(1500)
+    questionTypeId          String
+    questionType            QuestionType    @relation(fields: [questionTypeId], references: [id])
+    domain                  String          @default("")
+    clientAssessmentAnswers ClientAssessmentAnswers[]
+
+    @@index([assessmentId])
+    @@index([questionTypeId])
+}
+
+model QuestionType {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    name            String
+    questions       Question[]
+}
+
+model ClientAssessmentAnswers {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    accountId       String
+    account         Account     @relation(fields: [accountId], references: [id])
+    assessmentId    String
+    assessment      Assessment  @relation(fields: [assessmentId], references: [id])
+    questionId      String
+    question        Question    @relation(fields: [questionId], references: [id])
+    answer          String
+
+    @@index([accountId])
+    @@index([assessmentId])
+    @@index([questionId])
+}
+
+model DomainScoreCard {
+    id                  String          @id @default(cuid())
+    createdAt           DateTime        @default(now())
+    updatedAt           DateTime        @updatedAt
+    accountId           String
+    account             Account         @relation(fields: [accountId], references: [id])
+    depressionTScore    Decimal?
+    depressionSE        Decimal?
+    depressionRisk      String?
+    angerTScore         Decimal?
+    angerSE             Decimal?
+    angerRisk           String?
+    maniaRawScore       Decimal?
+    maniaRisk           String?
+    anxietyTScore       Decimal?
+    anxietySE           Decimal?
+    anxietyRisk         String?
+    somaticPHQ15Score   Int?
+    somaticSeverity     String?
+    sleepTScore         Decimal?
+    sleepSE             Decimal?
+    sleepRisk           String?
+    repetitiveAverage   Decimal?
+    repetitiveSeverity  String?
+    substanceRawScore   Decimal?
+    substanceRisk       String?
+
+    @@index([accountId])
+}
+
+model CalendarEventType {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    name            String
+    capacity        Int
+    calendarEvents  CalendarEvent[]
+}
+
+model CalendarEvent {
+    id                      String              @id @default(cuid())
+    createdAt               DateTime            @default(now())
+    updatedAt               DateTime            @updatedAt
+    calendarEventTypeId     String
+    calendarEventType       CalendarEventType   @relation(fields: [calendarEventTypeId], references: [id])
+    title                   String
+    description             String?
+    start                   DateTime
+    end                     DateTime
+    url                     String?
+    filled                  Boolean             @default(false)
+    repeat                  Boolean             @default(false)
+    count                   Int?                @default(0)
+    locationId              String?
+    location                Location?           @relation(fields: [locationId], references: [id])
+    accountId               String?
+    account                 Account?            @relation(fields: [accountId], references: [id])
+    clientCalendarEvents    ClientCalendarEvent[]
+
+    @@index([calendarEventTypeId])
+    @@index([locationId])
+    @@index([accountId])
+}
+
+model ClientCalendarEvent {
+    id                  String              @id @default(cuid())
+    createdAt           DateTime            @default(now())
+    updatedAt           DateTime            @updatedAt
+    calendarEventId     String
+    calendarEvent       CalendarEvent       @relation(fields: [calendarEventId], references: [id])
+    accountId           String
+    account             Account             @relation(fields: [accountId], references: [id])
+    attended            Boolean             @default(false)
+
+    @@index([calendarEventId])
+    @@index([accountId])
+}
+
+model ClientAccessLimits {
+    id                  String          @id @default(cuid())
+    createdAt           DateTime        @default(now())
+    updateAt            DateTime        @updatedAt
+    accountId           String
+    account             Account         @relation(fields: [accountId], references: [id])
+    suGroupsWeek        Int             @default(2)
+    dvGroupsWeek        Int             @default(0)
+    amGroupsWeek        Int             @default(0)
+    crGroupsWeek        Int             @default(0)
+    individualsWeek     Int             @default(2)
+    allowRecurring      Boolean         @default(true)
+    forgiveRecurring    Boolean         @default(false)
+    activeGoals         Int             @default(0)
+    activeGoalsLimit    Int             @default(3)
+
+    @@index([accountId])
+}
+
+model RequireIncident {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    clientId        String
+    client          Account     @relation("Clients", fields: [clientId], references: [id])
+    clinicianId     String
+    clinician       Account     @relation("Clinicians", fields: [clinicianId], references: [id])
+    completed       Boolean     @default(false)
+
+    @@index([clientId])
+    @@index([clinicianId])
+}
+
+model ClientRequirement {
+    id                  String              @id @default(cuid())
+    createdAt           DateTime            @default(now())
+    updatedAt           DateTime            @updatedAt
+    clientId            String
+    client              Account             @relation(fields: [clientId], references: [id])
+    requirementTypeId   String
+    requirementType     RequirementType     @relation(fields: [requirementTypeId], references: [id])
+    requiredAmount      Int
+    fulfilledAmount     Int                 @default(0)
+    completed           Boolean             @default(false)
+
+    @@index([clientId])
+    @@index([requirementTypeId])
+}
+
+model RequirementType {
+    id                  String      @id @default(cuid())
+    createdAt           DateTime    @default(now())
+    updatedAt           DateTime    @updatedAt @default(now())
+    name                String
+    clientRequirements  ClientRequirement[]
+}
+
+model Price {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    name            String
+    price           Int
+    clientPrices    ClientPrice[]
+    discountPrices  DiscountPrice[]
+}
+
+model ClientPrice {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    priceId         String
+    price           Price       @relation(fields: [priceId], references: [id])
+    clientPrice     Int
+    accountId       String
+    account         Account     @relation(fields: [accountId], references: [id])
+
+    @@index([accountId])
+    @@index([priceId])
+}
+
+model DiscountPrice {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    priceId         String
+    price           Price       @relation(fields: [priceId], references: [id])
+    discountPrice   Int
+    accountId       String
+    account         Account     @relation(fields: [accountId], references: [id])
+    expirationDate  DateTime
+
+    @@index([accountId])
+    @@index([priceId])
+}
+
+model Message {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updateAt        DateTime    @updatedAt
+    message         String      @db.VarChar(1500)
+    accountId       String
+    account         Account     @relation(fields: [accountId], references: [id])
+    externalId      String
+    
+    @@index([accountId])
+}
+
+model ClinicalNote {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    note            String      @db.VarChar(1500)
+    clientId        String
+    client          Account     @relation("Clients", fields: [clientId], references: [id])
+    clinicianId     String
+    clinician       Account     @relation("Clinicians", fields: [clinicianId], references: [id])
+
+    @@index([clientId])
+    @@index([clinicianId])
+}
+
+model Contact {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    firstName       String
+    lastName        String
+    phone           String
+    email           String
+    agency          String
+    agentTypeId     String?
+    agentType       AgentType?  @relation(fields: [agentTypeId], references: [id])
+    isInSystem      Boolean
+    clientId        String
+    client          Account     @relation("Clients", fields: [clientId], references: [id])
+    agentId         String?
+    agent           Account?    @relation("Agents", fields: [agentId], references: [id])
+
+    @@index([agentTypeId])
+    @@index([clientId])
+    @@index([agentId])
+}
+
+model AccountFinancial {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    accountId       String
+    account         Account     @relation(fields: [accountId], references: [id])
+    paymentProcess  String
+
+    @@index([accountId])
+}
+
+model Demographic {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    native          Int
+    asian           Int
+    black           Int
+    hispanic        Int
+    islander        Int
+    white           Int
+    multi           Int
+    not             Int
+}
+
+model GoalAchievmentStatus {
+    id                  String      @id @default(cuid())
+    createdAt           DateTime    @default(now())
+    updatedAt           DateTime    @updatedAt
+    name                String
+    clientGoalAnswers   ClientGoalAnswers[]
+}
+
+model GoalTypes {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    name            String
+}
+
+model RequiredGoals {
+    id              String      @id @default(cuid())
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    goalId          String
+    goal            Goal        @relation(fields: [goalId], references: [id])
+    accountId       String
+    account         Account     @relation(fields: [accountId], references: [id])
+
+    @@index([accountId])
+    @@index([goalId])
+}
+
+model Goal {
+    id                      String          @id @default(cuid())
+    createdAt               DateTime        @default(now())
+    updatedAt               DateTime        @updatedAt
+    name                    String
+    description             String
+    url                     String          @default("")
+    requiredGoals           RequiredGoals[]
+    clientGoalAnswers       ClientGoalAnswers[]
+}
+
+model ClientGoalAnswers {
+    id                      String                  @id @default(cuid())
+    createdAt               DateTime                @default(now())
+    updatedAt               DateTime                @updatedAt
+    accountId               String
+    account                 Account                 @relation(fields: [accountId], references: [id])
+    goalId                  String
+    goal                    Goal                    @relation(fields: [goalId], references: [id])
+    answer                  String                  @db.VarChar(1500)
+    question                String
+    goalAchievmentStatusId  String
+    goalAchievementStatus   GoalAchievmentStatus    @relation(fields: [goalAchievmentStatusId], references: [id])
+    review30                Boolean                 @default(false)
+    review60                Boolean                 @default(false)
+    review90                Boolean                 @default(false)
+    isCurrent               Boolean                 @default(false)
+
+    @@index([accountId])
+    @@index([goalId])
+    @@index([goalAchievmentStatusId])
+}
+
+model ClientAlerts {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updateAt        DateTime        @updatedAt
+    accountId       String
+    account         Account         @relation(fields: [accountId], references: [id])
+    alert           String          @db.VarChar(1500)
+
+    @@index([accountId])
+}
+
+model ClientParticipationNotes {
+    id              String          @id @default(cuid())
+    createdAt       DateTime        @default(now())
+    updateAt        DateTime        @updatedAt
+    accountId       String
+    account         Account         @relation(fields: [accountId], references: [id])
+    note            String          @db.VarChar(1500)
+
+    @@index([accountId])
+}

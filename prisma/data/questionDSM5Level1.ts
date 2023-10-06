@@ -1,0 +1,27 @@
+const questions = [
+    { assessmentId: '', questionTypeId: '', domain: 'I', question: 'Little interest or pleasure in doing things?' },
+    { assessmentId: '', questionTypeId: '', domain: 'I', question: 'Feeling down, depressed, or hopeless?' },
+    { assessmentId: '', questionTypeId: '', domain: 'II', question: 'Feeling more irritated, grouchy, or angry than usual?' },
+    { assessmentId: '', questionTypeId: '', domain: 'III', question: 'Sleeping less then usual, but still have a lot of energy?' },
+    { assessmentId: '', questionTypeId: '', domain: 'III', question: 'Starting lots more projects than usual or doing more risky things than usual?' },
+    { assessmentId: '', questionTypeId: '', domain: 'IV', question: 'Feeling nervous, anxious, frightened, worried, or on edge?' },
+    { assessmentId: '', questionTypeId: '', domain: 'IV', question: 'Feeling panic or being frightened?' },
+    { assessmentId: '', questionTypeId: '', domain: 'IV', question: 'Avoiding situations that make you anxious?' },
+    { assessmentId: '', questionTypeId: '', domain: 'V', question: 'Unexplained aches and pains (e.g., head, back, joints, abdomen, legs)?' },
+    { assessmentId: '', questionTypeId: '', domain: 'V', question: 'Feeling that your illnesses are not being taken seriously enough?' },
+    { assessmentId: '', questionTypeId: '', domain: 'VI', question: 'Thoughts of actually hurting yourself?' },
+    { assessmentId: '', questionTypeId: '', domain: 'VII', question: `Hearing things other people couldn't hear, such as voices even when no one was around?` },
+    { assessmentId: '', questionTypeId: '', domain: 'VII', question: 'Feeling that someone could hear your thoughts, or that you could hear what another person was thinking?' },
+    { assessmentId: '', questionTypeId: '', domain: 'VIII', question: 'Problems with sleep that affected your sleep quality over all?' },
+    { assessmentId: '', questionTypeId: '', domain: 'IX', question: 'Problems with memory (e.g., learning new information) or with location (e.g., finding your way home)?' },
+    { assessmentId: '', questionTypeId: '', domain: 'X', question: 'Unpleasant thoughts, urges, or images that repeatedly enter your mind?' },
+    { assessmentId: '', questionTypeId: '', domain: 'X', question: 'Feeling driven to perform certain behaviors or mental acts over and over again?' },
+    { assessmentId: '', questionTypeId: '', domain: 'XI', question: 'Feeling detached or distant from yourself, your body, your physical surroundings, or your memories?' },
+    { assessmentId: '', questionTypeId: '', domain: 'XII', question: 'Not knowing who you really are or what you want out of life?' },
+    { assessmentId: '', questionTypeId: '', domain: 'XII', question: 'Not feeling close to other people or enjoying your relationships with them?' },
+    { assessmentId: '', questionTypeId: '', domain: 'XIII', question: 'Drinking at least 4 drinks of any kind of alcohol in a single day?' },
+    { assessmentId: '', questionTypeId: '', domain: 'XIII', question: 'Smoking cigarettes, a cigar, or pipe, or using snuff or chewing tobacco?' },
+    { assessmentId: '', questionTypeId: '', domain: 'XIII', question: `Using any of the following medicines ON YOUR OWN, that is, without a doctor's prescription, in greater amounts or longer then prescribed [e.g., painkillers (like Vicoden), stimulants (like Ritalin or Aderrall), sedatives or tranquilizers (like sleeping pills or Valium), or drugs like marijuana, cocaine or crack, club drugs (like ecstasy), hallucinogens (like LSD), heroin, inhalants or solvents (like glue), or methamphetamine (like speed)]?` },
+];
+
+export default questions;
