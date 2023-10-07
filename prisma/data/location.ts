@@ -1,8 +1,7 @@
 // Note on stateId - if the db for it ever clears we need to get the new ids from the state table
 
 const location = [
-    { name: 'Crazy Old Maurices', address: '1234 Main St', city: 'Provo', stateId: 'clihpw0mk001h8smse5y0fvr3', zip: '84604' },
-    { name: 'Old Lady Maurices', address: '1234 Main St', city: 'Draper', stateId: 'clihpw0mk001h8smse5y0fvr3', zip: '84888' },
+    { name: 'Spanish Fork', address: '2012E 1180S', city: 'Spanish Fork', stateId: 'clng62xyh001h8srktqt7c6qx', zip: '84660' },
 ]
 
 export default location;
