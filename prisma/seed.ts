@@ -32,10 +32,7 @@ import goal from "./data/goal"; // lvl 1
 // import question9 from "./data/questionRepetitive"; // lvl 2 - assessmentId, questionTypeId
 
 // lvl 3 data seeding - lvl 2 dependencies
-// import requiredPolicy from "./data/requiredPolicy"; // lvl 3 AccountTypeId, policyId 
-
-// lvl 4 data seeding - dependent on something not set
-// import calendarEvents from "./data/calendar-events"; // locationId, calendarEventTypeId
+// import requiredPolicy from "./data/requiredPolicy"; // lvl 3 AccountTypeId, policyId
 
 // lvl 5 data seeding - data TBD
 // import location from "./data/location"; // currently not needed
@@ -135,14 +132,6 @@ async function main() {
     // await prisma.requiredPolicies.createMany({ data: requiredPolicies });
 
     // ***** end level 3 seed scripts *****
-
-
-
-    // ***** level 4 seed scripts - these are run last after the TBD data has been set and the scripts have been updated *****
-    // // seed calendarEvents
-    // await prisma.calendarEvent.createMany({ data: calendarEvents });
-
-    // ***** end level 4 seed scripts *****
 
 
 
