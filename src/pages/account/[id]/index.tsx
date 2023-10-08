@@ -17,7 +17,7 @@ import IncidentReportModal from "~/modals/IncidentReportModal";
 import IncidentReportViewModal from "~/modals/IncidentReportViewModal";
 import AssessmentViewModal from "~/modals/AssessmentViewModal";
 
-// import IncidentReportRequireModal from "~/modals/IncidentReportRequireModal";
+import IncidentReportRequireModal from "~/modals/IncidentReportRequireModal";
 // import AssessmentRequireModal from "~/modals/AssessmentRequireModal";
 
 // import ClientRequirementModal from "~/modals/ClientRequirementModal";
@@ -49,7 +49,7 @@ const AccountDashboard: NextPage = (props) => {
     const [incidentReportModalViewIsOpen, setIncidentReportModalViewIsOpen] = useState(false);
     const [assessment, setAssessment] = useState('');
     const [assessmentModalViewIsOpen, setAssessmentModalViewIsOpen] = useState(false);
-    // const [incidentReportRequiredModalIsOpen, setIncidentReportRequiredModalIsOpen] = useState(false);
+    const [incidentReportRequiredModalIsOpen, setIncidentReportRequiredModalIsOpen] = useState(false);
     // const [assmentRequireModalIsOpen, setAssessmentRequireModalIsOpen] = useState(false);
     // const [clientRequirementModalIsOpen, setClientRequirementModalIsOpen] = useState(false);
     // const [requirementId, setRequirementId] = useState('');
@@ -187,8 +187,7 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleRequireIncident = () => {
-        console.log('ToDo - Remove me')
-        // setIncidentReportRequiredModalIsOpen(true);
+        setIncidentReportRequiredModalIsOpen(true);
     }
 
     const handleRequireAssessment = () => {
@@ -664,13 +663,13 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <AssessmentViewModal assessment={assessment} accountId={account.id} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setIncidentReportRequiredModalIsOpen(false)}
                 isOpen={incidentReportRequiredModalIsOpen}
             >
                 <IncidentReportRequireModal accountId={accountId} externalId={userId} onClose={() => setIncidentReportRequiredModalIsOpen(false)} refetchNextStep={refetchNextStep} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setAssessmentRequireModalIsOpen(false)}
                 isOpen={assmentRequireModalIsOpen}
             >
