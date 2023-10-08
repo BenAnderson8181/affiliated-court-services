@@ -16,11 +16,10 @@ import Modal from "../../../modals/Modal";
 import IncidentReportModal from "~/modals/IncidentReportModal";
 import IncidentReportViewModal from "~/modals/IncidentReportViewModal";
 import AssessmentViewModal from "~/modals/AssessmentViewModal";
-
 import IncidentReportRequireModal from "~/modals/IncidentReportRequireModal";
-// import AssessmentRequireModal from "~/modals/AssessmentRequireModal";
+import AssessmentRequireModal from "~/modals/AssessmentRequireModal";
+import ClientRequirementModal from "~/modals/ClientRequirementModal";
 
-// import ClientRequirementModal from "~/modals/ClientRequirementModal";
 // import ClientRequirementUpdateModal from "~/modals/ClientRequirementUpdateModal";
 // import MessageCreateModal from "~/modals/MessageCreateModal";
 // import MessageUpdateModal from "~/modals/MessageUpdateModal";
@@ -50,8 +49,8 @@ const AccountDashboard: NextPage = (props) => {
     const [assessment, setAssessment] = useState('');
     const [assessmentModalViewIsOpen, setAssessmentModalViewIsOpen] = useState(false);
     const [incidentReportRequiredModalIsOpen, setIncidentReportRequiredModalIsOpen] = useState(false);
-    // const [assmentRequireModalIsOpen, setAssessmentRequireModalIsOpen] = useState(false);
-    // const [clientRequirementModalIsOpen, setClientRequirementModalIsOpen] = useState(false);
+    const [assmentRequireModalIsOpen, setAssessmentRequireModalIsOpen] = useState(false);
+    const [clientRequirementModalIsOpen, setClientRequirementModalIsOpen] = useState(false);
     // const [requirementId, setRequirementId] = useState('');
     // const [clientRequirementUpdateModalIsOpen, setClientRequirementUpdateModalIsOpen] = useState(false);
     // const [messageCreateModalIsOpen, setMessageCreateModalIsOpen] = useState(false);
@@ -191,13 +190,11 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleRequireAssessment = () => {
-        console.log('ToDo - Remove me')
-        // setAssessmentRequireModalIsOpen(true);
+        setAssessmentRequireModalIsOpen(true);
     }
 
     const handleClientRequirement = () => {
-        console.log('ToDo - Remove me')
-        // setClientRequirementModalIsOpen(true);
+        setClientRequirementModalIsOpen(true);
     }
 
     const handleRequirementClick = (requirementId: string) => {
@@ -206,9 +203,9 @@ const AccountDashboard: NextPage = (props) => {
         // setClientRequirementUpdateModalIsOpen(true);
     }
 
-    // const refreshRequirements = () => {
-    //     clientRequirementsQuery.refetch();
-    // }
+    const refreshRequirements = () => {
+        clientRequirementsQuery.refetch();
+    }
 
     const handleMessage = () => {
         console.log('ToDo - Remove me')
@@ -669,7 +666,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <IncidentReportRequireModal accountId={accountId} externalId={userId} onClose={() => setIncidentReportRequiredModalIsOpen(false)} refetchNextStep={refetchNextStep} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setAssessmentRequireModalIsOpen(false)}
                 isOpen={assmentRequireModalIsOpen}
             >
@@ -681,7 +678,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <ClientRequirementModal accountId={accountId} onClose={() => setClientRequirementModalIsOpen(false)} onRefresh={refreshRequirements} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setClientRequirementUpdateModalIsOpen(false)}
                 isOpen={clientRequirementUpdateModalIsOpen}
             >
