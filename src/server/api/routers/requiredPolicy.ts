@@ -1,6 +1,5 @@
 import { TRPCError } from "@trpc/server";
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
-import { z } from "zod";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const requiredPoliciesRouter = createTRPCRouter({
     list: publicProcedure
