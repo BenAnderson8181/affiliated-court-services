@@ -18,6 +18,7 @@ const SignInRedirect: React.FC<Props> = (props) => {
 
     const accountQuery = api.account.findAccountByExternalId.useQuery({ externalId: userId });
 
+    // TODO: This should use the loading component
     if (accountQuery.isLoading)
         return (
             <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2f0f5b] to-[#6941a2] text-slate-100">

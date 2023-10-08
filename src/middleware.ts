@@ -6,7 +6,7 @@ export default authMiddleware({
   // This is where we will handle checking if the account exists in our database
   // and starting the sign in/sign up work flow
   afterAuth: (auth, req) => {
-     //eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     // console.log('global: ', global.sessionId)
     // console.log('auth: ', auth.sessionId)
