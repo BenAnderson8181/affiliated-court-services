@@ -14,7 +14,7 @@ import LoadError from "~/components/LoadError";
 // Modals
 import Modal from "../../../modals/Modal";
 import IncidentReportModal from "~/modals/IncidentReportModal";
-// import IncidentReportViewModal from "~/modals/IncidentReportViewModal";
+import IncidentReportViewModal from "~/modals/IncidentReportViewModal";
 // import AssessmentViewModal from "~/modals/AssessmentViewModal";
 
 // import IncidentReportRequireModal from "~/modals/IncidentReportRequireModal";
@@ -45,8 +45,8 @@ const AccountDashboard: NextPage = (props) => {
     const router = useRouter();
     const { user } = useUser();
     const [incidentReportModalIsOpen, setIncidentReportModalIsOpen] = useState(false);
-    // const [incidentId, setIncidentId] = useState('');
-    // const [incidentReportModalViewIsOpen, setIncidentReportModalViewIsOpen] = useState(false);
+    const [incidentId, setIncidentId] = useState('');
+    const [incidentReportModalViewIsOpen, setIncidentReportModalViewIsOpen] = useState(false);
     // const [assessment, setAssessment] = useState('');
     // const [assessmentModalViewIsOpen, setAssessmentModalViewIsOpen] = useState(false);
     // const [incidentReportRequiredModalIsOpen, setIncidentReportRequiredModalIsOpen] = useState(false);
@@ -175,9 +175,8 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleIncidentClick = (incidentId: string) => {
-        console.log(incidentId)
-        // setIncidentId(() => incidentId);
-        // setIncidentReportModalViewIsOpen(true);
+        setIncidentId(() => incidentId);
+        setIncidentReportModalViewIsOpen(true);
 
         return true;
     }
@@ -654,13 +653,13 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <IncidentReportModal clientId={account?.id} onClose={() => setIncidentReportModalIsOpen(false)} refetchNextStep={refetchNextStep} />
             </Modal>
-            {/* <Modal
+            <Modal
                 onClose={() => setIncidentReportModalViewIsOpen(false)}
                 isOpen={incidentReportModalViewIsOpen}
             >
                 <IncidentReportViewModal id={incidentId} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setAssessmentModalViewIsOpen(false)}
                 isOpen={assessmentModalViewIsOpen}
             >
