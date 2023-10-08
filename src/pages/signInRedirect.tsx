@@ -8,6 +8,7 @@ type Props = {
 }
 
 const SignInRedirect: React.FC<Props> = (props) => {
+    console.log('Redirect Props: ', props);
     const router = useRouter();
     const { user } = useUser();
 
