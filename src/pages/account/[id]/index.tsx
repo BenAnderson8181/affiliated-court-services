@@ -15,7 +15,7 @@ import LoadError from "~/components/LoadError";
 import Modal from "../../../modals/Modal";
 import IncidentReportModal from "~/modals/IncidentReportModal";
 import IncidentReportViewModal from "~/modals/IncidentReportViewModal";
-// import AssessmentViewModal from "~/modals/AssessmentViewModal";
+import AssessmentViewModal from "~/modals/AssessmentViewModal";
 
 // import IncidentReportRequireModal from "~/modals/IncidentReportRequireModal";
 // import AssessmentRequireModal from "~/modals/AssessmentRequireModal";
@@ -47,8 +47,8 @@ const AccountDashboard: NextPage = (props) => {
     const [incidentReportModalIsOpen, setIncidentReportModalIsOpen] = useState(false);
     const [incidentId, setIncidentId] = useState('');
     const [incidentReportModalViewIsOpen, setIncidentReportModalViewIsOpen] = useState(false);
-    // const [assessment, setAssessment] = useState('');
-    // const [assessmentModalViewIsOpen, setAssessmentModalViewIsOpen] = useState(false);
+    const [assessment, setAssessment] = useState('');
+    const [assessmentModalViewIsOpen, setAssessmentModalViewIsOpen] = useState(false);
     // const [incidentReportRequiredModalIsOpen, setIncidentReportRequiredModalIsOpen] = useState(false);
     // const [assmentRequireModalIsOpen, setAssessmentRequireModalIsOpen] = useState(false);
     // const [clientRequirementModalIsOpen, setClientRequirementModalIsOpen] = useState(false);
@@ -182,9 +182,8 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleAssessmentClick = (assessment: string) => {
-        console.log('ToDo - Remove me', assessment)
-        // setAssessment(() => assessment);
-        // setAssessmentModalViewIsOpen(true);
+        setAssessment(() => assessment);
+        setAssessmentModalViewIsOpen(true);
     }
 
     const handleRequireIncident = () => {
@@ -659,13 +658,13 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <IncidentReportViewModal id={incidentId} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setAssessmentModalViewIsOpen(false)}
                 isOpen={assessmentModalViewIsOpen}
             >
                 <AssessmentViewModal assessment={assessment} accountId={account.id} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setIncidentReportRequiredModalIsOpen(false)}
                 isOpen={incidentReportRequiredModalIsOpen}
             >
