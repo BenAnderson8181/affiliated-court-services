@@ -6,6 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { isBefore, format, addHours } from "date-fns";
 import { RiAddBoxFill, RiMailCheckFill, RiEditBoxFill } from "react-icons/ri";
+import ProgressBar from "@ramonak/react-progress-bar";
 // Components
 import Header from "../../../components/header";
 import Loading from "~/components/Loading";
@@ -21,7 +22,6 @@ import IncidentReportModal from "~/modals/IncidentReportModal";
 
 // import ClientRequirementModal from "~/modals/ClientRequirementModal";
 // import ClientRequirementUpdateModal from "~/modals/ClientRequirementUpdateModal";
-// import ProgressBar from "@ramonak/react-progress-bar";
 // import MessageCreateModal from "~/modals/MessageCreateModal";
 // import MessageUpdateModal from "~/modals/MessageUpdateModal";
 // import ClinicalNoteCreateModal from "~/modals/ClinicalNoteCreateModal";
@@ -156,8 +156,8 @@ const AccountDashboard: NextPage = (props) => {
     const clientParticipationNote = clientParticipationNoteQuery.data;
 
     const totalRequired = clientRequirements.reduce((acc, cur) => { return acc + cur.requiredAmount}, 0);
-    // const totalFulfilled = clientRequirements.reduce((acc, cur) => { return acc + cur.fulfilledAmount}, 0);
-    // const percentComplete = totalRequired === 0 ? 0 : (totalFulfilled / totalRequired * 100).toFixed(0);
+    const totalFulfilled = clientRequirements.reduce((acc, cur) => { return acc + cur.fulfilledAmount}, 0);
+    const percentComplete = totalRequired === 0 ? 0 : (totalFulfilled / totalRequired * 100).toFixed(0);
 
     let masquerade = false;
     if (account.externalId !== loggedInAccount.externalId) {
@@ -424,7 +424,7 @@ const AccountDashboard: NextPage = (props) => {
                     </div>
                     <div className="grid grid-cols-2 gap-3 border-2 border-indigo-700 rounded-lg shadow-lg shadow-indigo-950 bg-slate-200 text-slate-700 p-4 h-fit">
                     {
-                        // <ProgressBar completed={`${percentComplete}`} bgColor="#2f0f5b" baseBgColor="#EEDC9A" />
+                        <ProgressBar completed={`${percentComplete}`} bgColor="#2f0f5b" baseBgColor="#EEDC9A" />
                     }
                     {
                         clientRequirements.map((requirement) => {
