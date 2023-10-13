@@ -28,7 +28,7 @@ import ContactCreateModal from "~/modals/ContactCreateModal";
 import ContactViewModal from "~/modals/ContactViewModal";
 import DiscountCreateModal from "~/modals/DiscountCreateModal";
 import DiscountUpdateModal from "~/modals/DiscountUpdateModal";
-// import GoalRequireModal from "~/modals/GoalRequireModal";
+import GoalRequireModal from "~/modals/GoalRequireModal";
 // import GoalUpdateModal from "~/modals/GoalUpdateModal";
 // import LargeModal from "~/modals/LargeModal";
 // import AccountPolicyModal from "~/modals/AccountPolicyModal";
@@ -67,7 +67,7 @@ const AccountDashboard: NextPage = (props) => {
     const [discountPriceUpdateModalIsOpen, setDiscountPriceUpdateModalIsOpen] = useState(false);
     // const [goalName, setGoalName] = useState('');
     // const [goalModalIsOpen, setGoalModalIsOpen] = useState(false);
-    // const [requireGoalModalIsOpen, setRequireGoalModalIsOpen] = useState(false);
+    const [requireGoalModalIsOpen, setRequireGoalModalIsOpen] = useState(false);
     // const [requiredGoalId, setRequiredGoalId] = useState('');
     // const [policyIsOpen, setPolicyIsOpen] = useState(false);
     // const [policyTitle, setPolicyTitle] = useState('');
@@ -277,8 +277,7 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleRequireGoal = () => {
-        console.log('ToDo - Remove me')
-        // setRequireGoalModalIsOpen(true);
+        setRequireGoalModalIsOpen(true);
     }
 
     const handlePolicy = (title: string) => {
@@ -721,13 +720,13 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <DiscountUpdateModal id={discountPriceId} onClose={() => setDiscountPriceUpdateModalIsOpen(false)} onRefresh={refreshDiscounts} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setRequireGoalModalIsOpen(false)}
                 isOpen={requireGoalModalIsOpen}
             >
                 <GoalRequireModal accountId={accountId} onClose={() => setRequireGoalModalIsOpen(false)} refetchNextStep={refetchNextStep} />
             </Modal>
-            <LargeModal
+            {/*<LargeModal
                 onClose={() => setGoalModalIsOpen(false)}
                 isOpen={goalModalIsOpen}
             >
