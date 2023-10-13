@@ -31,7 +31,7 @@ import DiscountUpdateModal from "~/modals/DiscountUpdateModal";
 import GoalRequireModal from "~/modals/GoalRequireModal";
 import GoalUpdateModal from "~/modals/GoalUpdateModal";
 import LargeModal from "~/modals/LargeModal";
-// import AccountPolicyModal from "~/modals/AccountPolicyModal";
+import AccountPolicyModal from "~/modals/AccountPolicyModal";
 // import ProgressReportModal from "~/modals/ProgressReportModal";
 // import ClientAlertModal from "~/modals/ClientAlertModal";
 // import ParticipationNoteModal from "~/modals/ParticipationNoteModal";
@@ -69,8 +69,8 @@ const AccountDashboard: NextPage = (props) => {
     const [goalModalIsOpen, setGoalModalIsOpen] = useState(false);
     const [requireGoalModalIsOpen, setRequireGoalModalIsOpen] = useState(false);
     const [requiredGoalId, setRequiredGoalId] = useState('');
-    // const [policyIsOpen, setPolicyIsOpen] = useState(false);
-    // const [policyTitle, setPolicyTitle] = useState('');
+    const [policyIsOpen, setPolicyIsOpen] = useState(false);
+    const [policyTitle, setPolicyTitle] = useState('');
     // const [progressReportModalIsOpen, setProgressReportModalIsOpen] = useState(false);
     // const [clientAlertModalIsOpen, setClientAlertModalIsOpen] = useState(false);
     // const [participationNoteModalIsOpen, setParticipationNoteModalIsOpen] = useState(false);
@@ -282,8 +282,8 @@ const AccountDashboard: NextPage = (props) => {
 
     const handlePolicy = (title: string) => {
         if (title.length > 0) {
-            // setPolicyTitle(() => title);
-            // setPolicyIsOpen(true);
+            setPolicyTitle(() => title);
+            setPolicyIsOpen(true);
         }
     }
 
@@ -732,13 +732,13 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <GoalUpdateModal accountId={accountId} goal={goalName} requiredGoalId={requiredGoalId} />
             </LargeModal>
-            {/*<LargeModal
+            <LargeModal
                 onClose={() => setPolicyIsOpen(false)}
                 isOpen={policyIsOpen}
             >
-                <AccountPolicyModal policyTitle={policyTitle} accountId={accountId} onClose={() => setPolicyIsOpen(false)} />
+                <AccountPolicyModal policyTitle={policyTitle} accountId={accountId} />
             </LargeModal>
-            <Modal
+            {/*<Modal
                 onClose={() => setProgressReportModalIsOpen(false)}
                 isOpen={progressReportModalIsOpen}
             >
