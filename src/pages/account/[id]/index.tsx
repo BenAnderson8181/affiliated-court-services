@@ -24,9 +24,8 @@ import MessageCreateModal from "~/modals/MessageCreateModal";
 import MessageUpdateModal from "~/modals/MessageUpdateModal";
 import ClinicalNoteCreateModal from "~/modals/ClinicalNoteCreateModal";
 import ClinicalNoteUpdateModal from "~/modals/ClinicalNoteUpdateModal";
-
-// import ContactCreateModal from "~/modals/ContactCreateModal";
-// import ContactViewModal from "~/modals/ContactViewModal";
+import ContactCreateModal from "~/modals/ContactCreateModal";
+import ContactViewModal from "~/modals/ContactViewModal";
 
 // import DiscountCreateModal from "~/modals/DiscountCreateModal";
 // import DiscountUpdateModal from "~/modals/DiscountUpdateModal";
@@ -61,9 +60,9 @@ const AccountDashboard: NextPage = (props) => {
     const [clinicalNoteUpdateModalIsOpen, setClinicalNoteUpdateModalIsOpen] = useState(false);
     const [clinicalNoteId, setClinicalNoteId] = useState('');
     const [showMoreClinicalNotes, setShowMoreClinicalNotes] = useState(false);
-    // const [contactCreationModalIsOpen, setContactCreationModalIsOpen] = useState(false);
-    // const [contactId, setContactId] = useState('');
-    // const [contactViewModalIsOpen, setContactViewModalIsOpen] = useState(false);
+    const [contactCreationModalIsOpen, setContactCreationModalIsOpen] = useState(false);
+    const [contactId, setContactId] = useState('');
+    const [contactViewModalIsOpen, setContactViewModalIsOpen] = useState(false);
     // const [discountCreationModalIsOpen, setDiscountCreationModalIsOpen] = useState(false);
     // const [discountPriceId, setDiscountPriceId] = useState('');
     // const [discountPriceUpdateModalIsOpen, setDiscountPriceUpdateModalIsOpen] = useState(false);
@@ -241,19 +240,17 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleContact = () => {
-        console.log('ToDo - Remove me')
-        // setContactCreationModalIsOpen(true);
+        setContactCreationModalIsOpen(true);
     }
 
     const handleContactView = (contactId: string) => {
-        console.log('ToDo - Remove me', contactId)
-        // setContactId(() => contactId);
-        // setContactViewModalIsOpen(true);
+        setContactId(() => contactId);
+        setContactViewModalIsOpen(true);
     }
 
-    // const refreshContacts = () => {
-    //     contactQuery.refetch();
-    // }
+    const refreshContacts = () => {
+        contactQuery.refetch();
+    }
 
     const handleDiscount = () => {
         console.log('ToDo - Remove me')
@@ -703,7 +700,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <ClinicalNoteUpdateModal id={clinicalNoteId} onClose={() => setClinicalNoteUpdateModalIsOpen(false)} onRefresh={refreshClinicalNotes} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setContactCreationModalIsOpen(false)}
                 isOpen={contactCreationModalIsOpen}
             >
@@ -715,7 +712,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <ContactViewModal contactId={contactId} onClose={() => setContactViewModalIsOpen(false)} onRefresh={refreshContacts} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setDiscountCreationModalIsOpen(false)}
                 isOpen={discountCreationModalIsOpen}
             >
