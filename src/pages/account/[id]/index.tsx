@@ -32,7 +32,7 @@ import GoalRequireModal from "~/modals/GoalRequireModal";
 import GoalUpdateModal from "~/modals/GoalUpdateModal";
 import LargeModal from "~/modals/LargeModal";
 import AccountPolicyModal from "~/modals/AccountPolicyModal";
-// import ProgressReportModal from "~/modals/ProgressReportModal";
+import ProgressReportModal from "~/modals/ProgressReportModal";
 // import ClientAlertModal from "~/modals/ClientAlertModal";
 // import ParticipationNoteModal from "~/modals/ParticipationNoteModal";
 // import ClientUpdateModal from "~/modals/ClientUpdateModal";
@@ -71,7 +71,7 @@ const AccountDashboard: NextPage = (props) => {
     const [requiredGoalId, setRequiredGoalId] = useState('');
     const [policyIsOpen, setPolicyIsOpen] = useState(false);
     const [policyTitle, setPolicyTitle] = useState('');
-    // const [progressReportModalIsOpen, setProgressReportModalIsOpen] = useState(false);
+    const [progressReportModalIsOpen, setProgressReportModalIsOpen] = useState(false);
     // const [clientAlertModalIsOpen, setClientAlertModalIsOpen] = useState(false);
     // const [participationNoteModalIsOpen, setParticipationNoteModalIsOpen] = useState(false);
     // const [updateClientModalIsOpen, setUpdateClientModalIsOpen] = useState(false);
@@ -288,8 +288,7 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleProgressReport = () => {
-        console.log('ToDo - Remove me')
-        // setProgressReportModalIsOpen(true);
+        setProgressReportModalIsOpen(true);
     }
 
     const handleAlert = () => {
@@ -738,7 +737,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <AccountPolicyModal policyTitle={policyTitle} accountId={accountId} />
             </LargeModal>
-            {/*<Modal
+            <Modal
                 onClose={() => setProgressReportModalIsOpen(false)}
                 isOpen={progressReportModalIsOpen}
             >
@@ -753,7 +752,7 @@ const AccountDashboard: NextPage = (props) => {
                     onClose={() => setProgressReportModalIsOpen(false)}
                 />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setClientAlertModalIsOpen(false)}
                 isOpen={clientAlertModalIsOpen}
             >
