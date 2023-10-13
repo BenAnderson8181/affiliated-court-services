@@ -19,9 +19,9 @@ import AssessmentViewModal from "~/modals/AssessmentViewModal";
 import IncidentReportRequireModal from "~/modals/IncidentReportRequireModal";
 import AssessmentRequireModal from "~/modals/AssessmentRequireModal";
 import ClientRequirementModal from "~/modals/ClientRequirementModal";
+import ClientRequirementUpdateModal from "~/modals/ClientRequirementUpdateModal";
+import MessageCreateModal from "~/modals/MessageCreateModal";
 
-// import ClientRequirementUpdateModal from "~/modals/ClientRequirementUpdateModal";
-// import MessageCreateModal from "~/modals/MessageCreateModal";
 // import MessageUpdateModal from "~/modals/MessageUpdateModal";
 // import ClinicalNoteCreateModal from "~/modals/ClinicalNoteCreateModal";
 // import ClinicalNoteUpdateModal from "~/modals/ClinicalNoteUpdateModal";
@@ -51,9 +51,9 @@ const AccountDashboard: NextPage = (props) => {
     const [incidentReportRequiredModalIsOpen, setIncidentReportRequiredModalIsOpen] = useState(false);
     const [assmentRequireModalIsOpen, setAssessmentRequireModalIsOpen] = useState(false);
     const [clientRequirementModalIsOpen, setClientRequirementModalIsOpen] = useState(false);
-    // const [requirementId, setRequirementId] = useState('');
-    // const [clientRequirementUpdateModalIsOpen, setClientRequirementUpdateModalIsOpen] = useState(false);
-    // const [messageCreateModalIsOpen, setMessageCreateModalIsOpen] = useState(false);
+    const [requirementId, setRequirementId] = useState('');
+    const [clientRequirementUpdateModalIsOpen, setClientRequirementUpdateModalIsOpen] = useState(false);
+    const [messageCreateModalIsOpen, setMessageCreateModalIsOpen] = useState(false);
     // const [messageUpdateModalIsOpen, setMessageUpdateModalIsOpen] = useState(false);
     // const [messageId, setMessageId] = useState('');
     const [showMoreMessages, setShowMoreMessages] = useState(false);
@@ -198,9 +198,8 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleRequirementClick = (requirementId: string) => {
-        console.log('ToDo - Remove me', requirementId)
-        // setRequirementId(() => requirementId);
-        // setClientRequirementUpdateModalIsOpen(true);
+        setRequirementId(() => requirementId);
+        setClientRequirementUpdateModalIsOpen(true);
     }
 
     const refreshRequirements = () => {
@@ -208,8 +207,7 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleMessage = () => {
-        console.log('ToDo - Remove me')
-        // setMessageCreateModalIsOpen(true);
+        setMessageCreateModalIsOpen(true);
     }
 
     const handleMessageUpdate = (messageId: string) => {
@@ -218,9 +216,9 @@ const AccountDashboard: NextPage = (props) => {
         // setMessageUpdateModalIsOpen(true);
     }
 
-    // const refreshMessages = () => {
-    //     messageQuery.refetch();
-    // }
+    const refreshMessages = () => {
+        messageQuery.refetch();
+    }
 
     const handleShowMoreMessages = () => {
         setShowMoreMessages(() => !showMoreMessages);
@@ -678,7 +676,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <ClientRequirementModal accountId={accountId} onClose={() => setClientRequirementModalIsOpen(false)} onRefresh={refreshRequirements} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setClientRequirementUpdateModalIsOpen(false)}
                 isOpen={clientRequirementUpdateModalIsOpen}
             >
@@ -690,7 +688,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <MessageCreateModal accountId={accountId} externalId={userId} onClose={() => setMessageCreateModalIsOpen(false)} onRefresh={refreshMessages} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setMessageUpdateModalIsOpen(false)}
                 isOpen={messageUpdateModalIsOpen}
             >
