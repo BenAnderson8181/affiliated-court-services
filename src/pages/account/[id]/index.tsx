@@ -34,8 +34,8 @@ import LargeModal from "~/modals/LargeModal";
 import AccountPolicyModal from "~/modals/AccountPolicyModal";
 import ProgressReportModal from "~/modals/ProgressReportModal";
 import ClientAlertModal from "~/modals/ClientAlertModal";
-// import ParticipationNoteModal from "~/modals/ParticipationNoteModal";
-// import ClientUpdateModal from "~/modals/ClientUpdateModal";
+import ParticipationNoteModal from "~/modals/ParticipationNoteModal";
+import ClientUpdateModal from "~/modals/ClientUpdateModal";
 
 const AccountDashboard: NextPage = (props) => {
     console.log('Account Portal: ', props)
@@ -73,8 +73,8 @@ const AccountDashboard: NextPage = (props) => {
     const [policyTitle, setPolicyTitle] = useState('');
     const [progressReportModalIsOpen, setProgressReportModalIsOpen] = useState(false);
     const [clientAlertModalIsOpen, setClientAlertModalIsOpen] = useState(false);
-    // const [participationNoteModalIsOpen, setParticipationNoteModalIsOpen] = useState(false);
-    // const [updateClientModalIsOpen, setUpdateClientModalIsOpen] = useState(false);
+    const [participationNoteModalIsOpen, setParticipationNoteModalIsOpen] = useState(false);
+    const [updateClientModalIsOpen, setUpdateClientModalIsOpen] = useState(false);
 
     const userId = user?.id ?? '';
     if (!userId || userId === '' || userId == undefined)
@@ -300,22 +300,20 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleParticipationNote = () => {
-        console.log('ToDo - Remove me')
-        // setParticipationNoteModalIsOpen(true);
+        setParticipationNoteModalIsOpen(true);
     }
 
-    // const refreshParticipationNote = () => {
-    //     clientParticipationNoteQuery.refetch();
-    // }
+    const refreshParticipationNote = () => {
+        clientParticipationNoteQuery.refetch();
+    }
 
     const handleUpdateClient = () => {
-        console.log('ToDo - Remove me')
-        // setUpdateClientModalIsOpen(true);
+        setUpdateClientModalIsOpen(true);
     }
 
-    // const refreshClient = () => {
-    //     accountQuery.refetch();
-    // }
+    const refreshClient = () => {
+        accountQuery.refetch();
+    }
 
     // Repeat this for each type except client
     if (account?.accountTypeId === 'Type Agent') {
@@ -757,7 +755,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <ClientAlertModal accountId={accountId} onClose={() => setClientAlertModalIsOpen(false)} onRefresh={refreshClientAlert} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setParticipationNoteModalIsOpen(false)}
                 isOpen={participationNoteModalIsOpen}
             >
@@ -768,7 +766,7 @@ const AccountDashboard: NextPage = (props) => {
                 isOpen={updateClientModalIsOpen}
             >
                 <ClientUpdateModal id={accountId} onClose={() => setUpdateClientModalIsOpen(false)} onRefresh={refreshClient} />
-            </Modal> */}
+            </Modal>
         </div>
     );
 }
