@@ -26,9 +26,8 @@ import ClinicalNoteCreateModal from "~/modals/ClinicalNoteCreateModal";
 import ClinicalNoteUpdateModal from "~/modals/ClinicalNoteUpdateModal";
 import ContactCreateModal from "~/modals/ContactCreateModal";
 import ContactViewModal from "~/modals/ContactViewModal";
-
-// import DiscountCreateModal from "~/modals/DiscountCreateModal";
-// import DiscountUpdateModal from "~/modals/DiscountUpdateModal";
+import DiscountCreateModal from "~/modals/DiscountCreateModal";
+import DiscountUpdateModal from "~/modals/DiscountUpdateModal";
 // import GoalRequireModal from "~/modals/GoalRequireModal";
 // import GoalUpdateModal from "~/modals/GoalUpdateModal";
 // import LargeModal from "~/modals/LargeModal";
@@ -63,9 +62,9 @@ const AccountDashboard: NextPage = (props) => {
     const [contactCreationModalIsOpen, setContactCreationModalIsOpen] = useState(false);
     const [contactId, setContactId] = useState('');
     const [contactViewModalIsOpen, setContactViewModalIsOpen] = useState(false);
-    // const [discountCreationModalIsOpen, setDiscountCreationModalIsOpen] = useState(false);
-    // const [discountPriceId, setDiscountPriceId] = useState('');
-    // const [discountPriceUpdateModalIsOpen, setDiscountPriceUpdateModalIsOpen] = useState(false);
+    const [discountCreationModalIsOpen, setDiscountCreationModalIsOpen] = useState(false);
+    const [discountPriceId, setDiscountPriceId] = useState('');
+    const [discountPriceUpdateModalIsOpen, setDiscountPriceUpdateModalIsOpen] = useState(false);
     // const [goalName, setGoalName] = useState('');
     // const [goalModalIsOpen, setGoalModalIsOpen] = useState(false);
     // const [requireGoalModalIsOpen, setRequireGoalModalIsOpen] = useState(false);
@@ -253,18 +252,16 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleDiscount = () => {
-        console.log('ToDo - Remove me')
-        // setDiscountCreationModalIsOpen(true);
+        setDiscountCreationModalIsOpen(true);
     }
 
-    // const refreshDiscounts = () => {
-    //     discountPricesQuery.refetch();
-    // }
+    const refreshDiscounts = () => {
+        discountPricesQuery.refetch();
+    }
 
     const handleDiscountUpdate = (discountPriceId: string) => {
-        console.log('ToDo - Remove me', discountPriceId)
-        // setDiscountPriceId(() => discountPriceId);
-        // setDiscountPriceUpdateModalIsOpen(true);
+        setDiscountPriceId(() => discountPriceId);
+        setDiscountPriceUpdateModalIsOpen(true);
     }
 
     const handleGoal = (goal: string, url: string, requiredGoalId: string) => {
@@ -712,7 +709,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <ContactViewModal contactId={contactId} onClose={() => setContactViewModalIsOpen(false)} onRefresh={refreshContacts} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setDiscountCreationModalIsOpen(false)}
                 isOpen={discountCreationModalIsOpen}
             >
@@ -724,7 +721,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <DiscountUpdateModal id={discountPriceId} onClose={() => setDiscountPriceUpdateModalIsOpen(false)} onRefresh={refreshDiscounts} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setRequireGoalModalIsOpen(false)}
                 isOpen={requireGoalModalIsOpen}
             >
