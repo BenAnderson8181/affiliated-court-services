@@ -10,7 +10,7 @@ import 'ag-grid-community/styles//ag-theme-alpine.css';
 import Link from "next/link";
 import Loading from "~/components/Loading";
 import LoadError from "~/components/LoadError";
-import { ColDef, ICellRendererParams } from "ag-grid-community";
+import type { ColDef, ICellRendererParams } from "ag-grid-community";
 
 type RowData = {
     id: string;
