@@ -29,8 +29,8 @@ import ContactViewModal from "~/modals/ContactViewModal";
 import DiscountCreateModal from "~/modals/DiscountCreateModal";
 import DiscountUpdateModal from "~/modals/DiscountUpdateModal";
 import GoalRequireModal from "~/modals/GoalRequireModal";
-// import GoalUpdateModal from "~/modals/GoalUpdateModal";
-// import LargeModal from "~/modals/LargeModal";
+import GoalUpdateModal from "~/modals/GoalUpdateModal";
+import LargeModal from "~/modals/LargeModal";
 // import AccountPolicyModal from "~/modals/AccountPolicyModal";
 // import ProgressReportModal from "~/modals/ProgressReportModal";
 // import ClientAlertModal from "~/modals/ClientAlertModal";
@@ -65,10 +65,10 @@ const AccountDashboard: NextPage = (props) => {
     const [discountCreationModalIsOpen, setDiscountCreationModalIsOpen] = useState(false);
     const [discountPriceId, setDiscountPriceId] = useState('');
     const [discountPriceUpdateModalIsOpen, setDiscountPriceUpdateModalIsOpen] = useState(false);
-    // const [goalName, setGoalName] = useState('');
-    // const [goalModalIsOpen, setGoalModalIsOpen] = useState(false);
+    const [goalName, setGoalName] = useState('');
+    const [goalModalIsOpen, setGoalModalIsOpen] = useState(false);
     const [requireGoalModalIsOpen, setRequireGoalModalIsOpen] = useState(false);
-    // const [requiredGoalId, setRequiredGoalId] = useState('');
+    const [requiredGoalId, setRequiredGoalId] = useState('');
     // const [policyIsOpen, setPolicyIsOpen] = useState(false);
     // const [policyTitle, setPolicyTitle] = useState('');
     // const [progressReportModalIsOpen, setProgressReportModalIsOpen] = useState(false);
@@ -267,9 +267,9 @@ const AccountDashboard: NextPage = (props) => {
     const handleGoal = (goal: string, url: string, requiredGoalId: string) => {
         console.log(requiredGoalId, goal)
         if (masquerade) {
-            // setGoalName(() => goal);
-            // setRequiredGoalId(() => requiredGoalId)
-            // setGoalModalIsOpen(true);
+            setGoalName(() => goal);
+            setRequiredGoalId(() => requiredGoalId)
+            setGoalModalIsOpen(true);
         }
         else {
             router.push(`/account/goals/${url}`).catch((err) => console.error(err));
@@ -726,13 +726,13 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <GoalRequireModal accountId={accountId} onClose={() => setRequireGoalModalIsOpen(false)} refetchNextStep={refetchNextStep} />
             </Modal>
-            {/*<LargeModal
+            <LargeModal
                 onClose={() => setGoalModalIsOpen(false)}
                 isOpen={goalModalIsOpen}
             >
-                <GoalUpdateModal accountId={accountId} goal={goalName} requiredGoalId={requiredGoalId} onClose={() => setGoalModalIsOpen(false)} />
+                <GoalUpdateModal accountId={accountId} goal={goalName} requiredGoalId={requiredGoalId} />
             </LargeModal>
-            <LargeModal
+            {/*<LargeModal
                 onClose={() => setPolicyIsOpen(false)}
                 isOpen={policyIsOpen}
             >
