@@ -33,7 +33,7 @@ import GoalUpdateModal from "~/modals/GoalUpdateModal";
 import LargeModal from "~/modals/LargeModal";
 import AccountPolicyModal from "~/modals/AccountPolicyModal";
 import ProgressReportModal from "~/modals/ProgressReportModal";
-// import ClientAlertModal from "~/modals/ClientAlertModal";
+import ClientAlertModal from "~/modals/ClientAlertModal";
 // import ParticipationNoteModal from "~/modals/ParticipationNoteModal";
 // import ClientUpdateModal from "~/modals/ClientUpdateModal";
 
@@ -72,7 +72,7 @@ const AccountDashboard: NextPage = (props) => {
     const [policyIsOpen, setPolicyIsOpen] = useState(false);
     const [policyTitle, setPolicyTitle] = useState('');
     const [progressReportModalIsOpen, setProgressReportModalIsOpen] = useState(false);
-    // const [clientAlertModalIsOpen, setClientAlertModalIsOpen] = useState(false);
+    const [clientAlertModalIsOpen, setClientAlertModalIsOpen] = useState(false);
     // const [participationNoteModalIsOpen, setParticipationNoteModalIsOpen] = useState(false);
     // const [updateClientModalIsOpen, setUpdateClientModalIsOpen] = useState(false);
 
@@ -292,13 +292,12 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleAlert = () => {
-        console.log('ToDo - Remove me')
-        // setClientAlertModalIsOpen(true);
+        setClientAlertModalIsOpen(true);
     }
 
-    // const refreshClientAlert = () => {
-    //     clientAlertQuery.refetch();
-    // }
+    const refreshClientAlert = () => {
+        clientAlertQuery.refetch();
+    }
 
     const handleParticipationNote = () => {
         console.log('ToDo - Remove me')
@@ -752,13 +751,13 @@ const AccountDashboard: NextPage = (props) => {
                     onClose={() => setProgressReportModalIsOpen(false)}
                 />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setClientAlertModalIsOpen(false)}
                 isOpen={clientAlertModalIsOpen}
             >
                 <ClientAlertModal accountId={accountId} onClose={() => setClientAlertModalIsOpen(false)} onRefresh={refreshClientAlert} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setParticipationNoteModalIsOpen(false)}
                 isOpen={participationNoteModalIsOpen}
             >
