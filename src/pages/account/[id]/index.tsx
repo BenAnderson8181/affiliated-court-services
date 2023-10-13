@@ -21,8 +21,8 @@ import AssessmentRequireModal from "~/modals/AssessmentRequireModal";
 import ClientRequirementModal from "~/modals/ClientRequirementModal";
 import ClientRequirementUpdateModal from "~/modals/ClientRequirementUpdateModal";
 import MessageCreateModal from "~/modals/MessageCreateModal";
+import MessageUpdateModal from "~/modals/MessageUpdateModal";
 
-// import MessageUpdateModal from "~/modals/MessageUpdateModal";
 // import ClinicalNoteCreateModal from "~/modals/ClinicalNoteCreateModal";
 // import ClinicalNoteUpdateModal from "~/modals/ClinicalNoteUpdateModal";
 // import ContactCreateModal from "~/modals/ContactCreateModal";
@@ -54,8 +54,8 @@ const AccountDashboard: NextPage = (props) => {
     const [requirementId, setRequirementId] = useState('');
     const [clientRequirementUpdateModalIsOpen, setClientRequirementUpdateModalIsOpen] = useState(false);
     const [messageCreateModalIsOpen, setMessageCreateModalIsOpen] = useState(false);
-    // const [messageUpdateModalIsOpen, setMessageUpdateModalIsOpen] = useState(false);
-    // const [messageId, setMessageId] = useState('');
+    const [messageUpdateModalIsOpen, setMessageUpdateModalIsOpen] = useState(false);
+    const [messageId, setMessageId] = useState('');
     const [showMoreMessages, setShowMoreMessages] = useState(false);
     // const [clinicalNoteCreationModalIsOpen, setClinicalNoteCreationModalIsOpen] = useState(false);
     // const [clinicalNoteUpdateModalIsOpen, setClinicalNoteUpdateModalIsOpen] = useState(false);
@@ -211,9 +211,8 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleMessageUpdate = (messageId: string) => {
-        console.log('ToDo - Remove me', messageId)
-        // setMessageId(() => messageId);
-        // setMessageUpdateModalIsOpen(true);
+        setMessageId(() => messageId);
+        setMessageUpdateModalIsOpen(true);
     }
 
     const refreshMessages = () => {
@@ -688,13 +687,13 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <MessageCreateModal accountId={accountId} externalId={userId} onClose={() => setMessageCreateModalIsOpen(false)} onRefresh={refreshMessages} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setMessageUpdateModalIsOpen(false)}
                 isOpen={messageUpdateModalIsOpen}
             >
                 <MessageUpdateModal id={messageId} onClose={() => setMessageUpdateModalIsOpen(false)} onRefresh={refreshMessages} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setClinicalNoteCreationModalIsOpen(false)}
                 isOpen={clinicalNoteCreationModalIsOpen}
             >
