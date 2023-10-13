@@ -22,9 +22,9 @@ import ClientRequirementModal from "~/modals/ClientRequirementModal";
 import ClientRequirementUpdateModal from "~/modals/ClientRequirementUpdateModal";
 import MessageCreateModal from "~/modals/MessageCreateModal";
 import MessageUpdateModal from "~/modals/MessageUpdateModal";
+import ClinicalNoteCreateModal from "~/modals/ClinicalNoteCreateModal";
+import ClinicalNoteUpdateModal from "~/modals/ClinicalNoteUpdateModal";
 
-// import ClinicalNoteCreateModal from "~/modals/ClinicalNoteCreateModal";
-// import ClinicalNoteUpdateModal from "~/modals/ClinicalNoteUpdateModal";
 // import ContactCreateModal from "~/modals/ContactCreateModal";
 // import ContactViewModal from "~/modals/ContactViewModal";
 
@@ -57,9 +57,9 @@ const AccountDashboard: NextPage = (props) => {
     const [messageUpdateModalIsOpen, setMessageUpdateModalIsOpen] = useState(false);
     const [messageId, setMessageId] = useState('');
     const [showMoreMessages, setShowMoreMessages] = useState(false);
-    // const [clinicalNoteCreationModalIsOpen, setClinicalNoteCreationModalIsOpen] = useState(false);
-    // const [clinicalNoteUpdateModalIsOpen, setClinicalNoteUpdateModalIsOpen] = useState(false);
-    // const [clinicalNoteId, setClinicalNoteId] = useState('');
+    const [clinicalNoteCreationModalIsOpen, setClinicalNoteCreationModalIsOpen] = useState(false);
+    const [clinicalNoteUpdateModalIsOpen, setClinicalNoteUpdateModalIsOpen] = useState(false);
+    const [clinicalNoteId, setClinicalNoteId] = useState('');
     const [showMoreClinicalNotes, setShowMoreClinicalNotes] = useState(false);
     // const [contactCreationModalIsOpen, setContactCreationModalIsOpen] = useState(false);
     // const [contactId, setContactId] = useState('');
@@ -224,19 +224,17 @@ const AccountDashboard: NextPage = (props) => {
     }
 
     const handleClinicalNote = () => {
-        console.log('ToDo - Remove me')
-        // setClinicalNoteCreationModalIsOpen(true);
+        setClinicalNoteCreationModalIsOpen(true);
     }
 
     const handleClinicalNoteUpdate = (noteId: string) => {
-        console.log('ToDo - Remove me', noteId)
-        // setClinicalNoteId(() => noteId);
-        // setClinicalNoteUpdateModalIsOpen(true);
+        setClinicalNoteId(() => noteId);
+        setClinicalNoteUpdateModalIsOpen(true);
     }
 
-    // const refreshClinicalNotes = () => {
-    //     clinicalNotesQuery.refetch();
-    // }
+    const refreshClinicalNotes = () => {
+        clinicalNotesQuery.refetch();
+    }
     
     const handleShowMoreClinicalNotes = () => {
         setShowMoreClinicalNotes(() => !showMoreClinicalNotes);
@@ -693,7 +691,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <MessageUpdateModal id={messageId} onClose={() => setMessageUpdateModalIsOpen(false)} onRefresh={refreshMessages} />
             </Modal>
-            {/*<Modal
+            <Modal
                 onClose={() => setClinicalNoteCreationModalIsOpen(false)}
                 isOpen={clinicalNoteCreationModalIsOpen}
             >
@@ -705,7 +703,7 @@ const AccountDashboard: NextPage = (props) => {
             >
                 <ClinicalNoteUpdateModal id={clinicalNoteId} onClose={() => setClinicalNoteUpdateModalIsOpen(false)} onRefresh={refreshClinicalNotes} />
             </Modal>
-            <Modal
+            {/*<Modal
                 onClose={() => setContactCreationModalIsOpen(false)}
                 isOpen={contactCreationModalIsOpen}
             >
