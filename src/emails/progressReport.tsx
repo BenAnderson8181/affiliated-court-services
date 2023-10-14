@@ -61,6 +61,9 @@ import {
                     {
                         comment.length > 0 &&
                         <Section>
+                            <Text className='text-lg'>
+                                {email}
+                            </Text>
                             <Text className="text-lg">
                                 {comment}
                             </Text>
