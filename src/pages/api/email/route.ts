@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
 import { env } from "~/env.mjs";
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import WelcomeEmail from "~/emails/welcome";
 import ProgressReportEmail from "~/emails/progressReport";
 import Cancelled from "~/emails/cancelled";
