@@ -54,7 +54,7 @@ const AngerManagement: NextPage = () => {
     }
 
     const amGoal = goalsQuery.data?.find((g) => g.url === 'am');
-    const amRequiredGoals = requiredGoalsQuery.data?.filter((g) => g.goal.url === 'am');
+    // const amRequiredGoals = requiredGoalsQuery.data?.filter((g) => g.goal.url === 'am');
     const clientGoalAnswers = clientGoalAnswerQuery.data;
 
     const handleSave = async (question: string) => {
