@@ -1,5 +1,5 @@
 import { useUser } from "@clerk/nextjs";
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import LoadError from "~/components/LoadError";
