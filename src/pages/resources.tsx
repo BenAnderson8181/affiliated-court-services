@@ -1,21 +1,14 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import type { NextPage } from "next";
 import Image from "next/image";
-import Head from "next/head";
 import Link from "next/link";
 import HomeButton from "~/components/MainHomeButton";
 
 import logo from "~/../public/400JpgdpiLogoCropped.jpg";
 
-const Home: NextPage = () => {
-  return (
-    <>
-      <Head>
-        <title>Affiliated Court Services</title>
-        <meta name="description" content="Affiliated Court Services Management" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-slate-100">
+const Resources: NextPage = () => {
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-center bg-slate-100">
         <section className="h-20 fixed top-0 w-full z-50 text-slate-100 bg-gradient-to-b from-[#2f0f5b] via-[#6941a2] to-[#2f0f5b]">
           <div className="flex justify-between px-10">
             <div className="">
@@ -52,14 +45,13 @@ const Home: NextPage = () => {
           <div className="px-3"><Link href='/account/search' passHref>Search</Link></div>
         </section>
         <section className="text-slate-900">
-          Main
+          Resources
         </section>
         <section className="fixed bg-purple-900 bottom-0 h-36 w-full left-32 text-slate-100">
           Bottom
         </section>
       </main>
-    </>
-  );
-};
+    )
+}
 
-export default Home;
+export default Resources;

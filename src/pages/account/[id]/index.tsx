@@ -37,8 +37,7 @@ import ClientAlertModal from "~/modals/ClientAlertModal";
 import ParticipationNoteModal from "~/modals/ParticipationNoteModal";
 import ClientUpdateModal from "~/modals/ClientUpdateModal";
 
-const AccountDashboard: NextPage = (props) => {
-    console.log('Account Portal: ', props)
+const AccountDashboard: NextPage = () => {
     const router = useRouter();
     const { user } = useUser();
     const [incidentReportModalIsOpen, setIncidentReportModalIsOpen] = useState(false);
