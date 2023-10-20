@@ -59,8 +59,8 @@ const Home: NextPage = () => {
               </SignedIn>
               <SignedOut>
                 <SignInButton mode='modal'>
-                  <button className="rounded border border-gray-400 px-3 py-1 text-gray-400">
-                    Sign In
+                  <button className="border-2 border-purple-950 text-purple-950 bg-transparent p-8 rounded-xl text-xl font-extrabold shadow-lg shadow-purple-950 hover:shadow-md hover:shadow-black hover:bg-purple-950 hover:text-slate-100 [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)] translate-x-32">
+                    Get Started
                   </button>
                 </SignInButton>
               </SignedOut>
