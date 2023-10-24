@@ -2,7 +2,7 @@ import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export default authMiddleware({
-  publicRoutes: ['/', '/about-us', '/services', '/resources'],
+  publicRoutes: ['/', 'about-us', 'services', 'resources'],
   // This is where we will handle checking if the account exists in our database
   // and starting the sign in/sign up work flow
   afterAuth: (auth, req) => {
