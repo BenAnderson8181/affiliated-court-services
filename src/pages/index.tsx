@@ -17,8 +17,8 @@ const Home: NextPage = () => {
         <meta name="description" content="Affiliated Court Services Management" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex flex-col h-screen">
-        <section className="w-full h-32 z-50 text-slate-100 bg-gradient-to-b from-[#2f0f5b] via-[#6941a2] to-[#2f0f5b]">
+      <main className="flex flex-col h-full">
+        <section className="w-full h-24 z-50 text-slate-100 bg-gradient-to-b from-[#2f0f5b] via-[#6941a2] to-[#2f0f5b] fixed">
           <div className="flex justify-between px-10">
             <div className="inline-flex">
               <div className="bg-slate-100 rounded mt-1.5 p-1">
@@ -46,8 +46,8 @@ const Home: NextPage = () => {
         </section>
         <section className="h-full w-full flex flex-col relative overflow-hidden">
           <div>
-            <p className="absolute left-1/4 top-16 text-4xl font-serif font-light text-purple-900 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Welcome to Affiliated Court Services</p>
-            <p className="absolute left-1/4 top-28 text-3xl font-serif font-thin translate-x-6 text-purple-950 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Your Journey to Well Being Starts Here</p>
+            <p className="absolute left-1/4 top-40 text-4xl font-serif font-light text-purple-900 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Welcome to Affiliated Court Services</p>
+            <p className="absolute left-1/4 top-52 text-3xl font-serif font-thin translate-x-6 text-purple-950 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Your Journey to Well Being Starts Here</p>
             <Image
               src={main}
               alt="water"
