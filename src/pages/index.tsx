@@ -45,7 +45,7 @@ const Home: NextPage = () => {
           <div className="px-3"><Link href='/account/search' passHref>Search</Link></div>
         </section>
         <section className="h-full w-full flex flex-col relative overflow-hidden">
-          <div>
+          <div className="h-[75vh]">
             <p className="absolute left-1/4 top-40 text-4xl font-serif font-light text-purple-900 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Welcome to Affiliated Court Services</p>
             <p className="absolute left-1/4 top-52 text-3xl font-serif font-thin translate-x-6 text-purple-950 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Your Journey to Well Being Starts Here</p>
             <Image
