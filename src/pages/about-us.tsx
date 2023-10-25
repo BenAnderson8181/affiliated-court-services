@@ -28,7 +28,7 @@ const AboutUs: NextPage = () => {
                 </section>
                 <section className="fixed w-32 bg-violet-100 left-0 h-full text-purple-950 top-20 pt-10 text-xl shadow-2xl shadow-purple-950 z-20 font-bold">
                     <div className="pb-3 flex justify-center px-3 border-b border-purple-950"><HomeButton /></div>
-                    <div className="pt-3 px-3"><Link href='/about-us' passHref>About Us</Link></div>
+                    <div className="pt-3 px-3"><Link href='about-us' passHref>About Us</Link></div>
                     <div className="px-3"><Link href='/services' passHref>Services</Link></div>
                     <div className="px-3"><Link href='/resources' passHref>Resoures</Link></div>
                     <div className="px-3"><Link href='/signInRedirect' passHref>Account</Link></div>

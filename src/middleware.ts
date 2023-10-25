@@ -1,15 +1,13 @@
-import { authMiddleware } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
-  publicRoutes: ['/', 'about-us', 'services', 'resources'],
+  publicRoutes: ['/', '/services', '/about-us', '/resources'],
+
   // This is where we will handle checking if the account exists in our database
   // and starting the sign in/sign up work flow
   afterAuth: (auth, req) => {
-    //eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
-    // console.log('global: ', global.sessionId)
-    // console.log('auth: ', auth.sessionId)
+
     //eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     if (global.sessionId !== auth.sessionId) {
@@ -44,5 +42,5 @@ export default authMiddleware({
 });
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.*\\..*|_next).*)", "/",  "/(api|trpc)(.*)"],
 };
