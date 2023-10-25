@@ -35,7 +35,7 @@ const AboutUs: NextPage = () => {
                     <div className="px-3"><Link href='/calendar' passHref>Calendar</Link></div>
                     <div className="px-3"><Link href='/account/search' passHref>Search</Link></div>
                 </section>
-                <section className="h-full w-full flex flex-col relative overflow-hidden text-slate-900 pl-48 pr-16 items-center pt-36">
+                <section className="h-full w-full flex flex-col relative text-slate-900 pl-48 pr-16 items-center pt-36">
                     <h1 className="text-3xl font-bold">Welcome to Affiliated Court Services</h1>
                     <h2 className="text-2xl font-semibold">Your Journey to Well-Being Starts Here</h2>
                     <div className="pt-12">
@@ -98,9 +98,6 @@ const AboutUs: NextPage = () => {
                         </div>
                     </div>
                 </section>
-                {/* <section className="fixed bg-purple-900 bottom-0 h-36 w-full left-32 text-slate-100">
-                    Bottom
-                </section> */}
             </main>
         </>
     )

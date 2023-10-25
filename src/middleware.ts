@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
-  publicRoutes: ['/', '/services', '/about-us', '/resources'],
+  publicRoutes: ['/', '/services', '/about-us', '/resources'], // Note we also have a publicPaths check in _app.tsx
 
   // This is where we will handle checking if the account exists in our database
   // and starting the sign in/sign up work flow
