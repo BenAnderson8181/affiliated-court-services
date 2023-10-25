@@ -53,13 +53,13 @@ const Home: NextPage = () => {
               alt="water"
               className="w-full object-contain min-h-0"
             /> 
-            <div className="absolute left-1/2 bottom-16 z-50">
+            <div className="absolute left-52 bottom-16 z-50">
               <SignedIn>
                 <Link href='/signInRedirect' className="border-2 border-purple-950 text-purple-950 bg-transparent p-8 rounded-xl text-xl font-extrabold shadow-lg shadow-purple-950 hover:shadow-md hover:shadow-black hover:bg-purple-950 hover:text-slate-100 [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]" passHref>Take me to my account!</Link>
               </SignedIn>
               <SignedOut>
                 <SignInButton mode='modal'>
-                  <button className="border-2 border-purple-950 text-purple-950 bg-transparent p-8 rounded-xl text-xl font-extrabold shadow-lg shadow-purple-950 hover:shadow-md hover:shadow-black hover:bg-purple-950 hover:text-slate-100 [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)] translate-x-32">
+                  <button className="border-4 border-purple-950 text-purple-950 bg-transparent p-8 rounded-2xl text-xl font-extrabold shadow-lg shadow-purple-950 hover:shadow-md hover:shadow-black hover:bg-purple-950 hover:text-slate-100 hover:scale-110 [text-shadow:_0_1px_0_rgb(0_0_0_/_30%)]">
                     Get Started
                   </button>
                 </SignInButton>
