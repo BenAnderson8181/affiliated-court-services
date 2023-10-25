@@ -50,7 +50,7 @@ const AboutUs: NextPage = () => {
                             Founded by Lujean Marshal, a licensed therapist with over 30 years of experience, Affiliated Court Services is a dedicated mental health clinic offering a wide array of services tailored to meet your unique needs. Our team of licensed therapists, social workers, and mental health counselors work collaboratively to provide the best care possible.
                         </p>
                     </div>
-                    <div className="pt-12">
+                    <div className="pt-12 w-full">
                         <h3 className="font-bold text-xl text-center mb-6">What We Offer</h3>
                         <div className="flex flex-row justify-between text-xl border border-purple-950 bg-white p-3 rounded-md shadow-sm shadow-purple-950">
                             <ul className="w-1/2 list-disc px-6 list-inside">
@@ -87,7 +87,7 @@ const AboutUs: NextPage = () => {
                             We combine various therapeutic methods, including Cognitive Behavioral Therapy (CBT), Dialectical Behavior Therapy (DBT), and trauma-informed care to address the multifaceted needs of our patients. Our objective is not only to satisfy court mandates but also to empower our patients to enact meaningful change, thereby improving their quality of life.
                         </p>
                     </div>
-                    <div className="pt-12 mb-16">
+                    <div className="pt-12 mb-16 w-full">
                         <h3 className="font-bold text-xl text-center mb-6">Why Choose Us?</h3>
                         <div className="text-xl border border-purple-950 bg-white p-3 rounded-md shadow-sm shadow-purple-950">
                             <ul className="list-disc pl-6">
