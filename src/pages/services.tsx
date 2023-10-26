@@ -64,7 +64,7 @@ const Services: NextPage = () => {
                             Give our clients the opportunity to learn what contributes to intimate partner violence and gain insight into their own patterns of harmful behavior in their relationships.  This is done in a group setting meant to feel safe and supportive while still holding individuals accountable for their choices.
                         </p>
                     </div>
-                    <div className="pt-12">
+                    <div className="pt-12 w-full">
                         <h3 className="font-bold text-xl text-center mb-6">Individual Therapy Sessions:</h3>
                         <p className="text-xl border border-purple-950 bg-white p-3 rounded-md shadow-sm shadow-purple-950">
                             Offer our clients the opportunity to discuss and process their mental health issues one on one with a therapist.
