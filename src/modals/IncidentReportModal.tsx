@@ -39,7 +39,7 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
     const requiredAssessmentsCreate = api.requiredAssessments.create.useMutation();
     const requiredGoalCreate = api.requiredGoal.create.useMutation();
     const requiredIncidentCompleteMutation = api.requireIncident.complete.useMutation();
-
+  
     if (incidentTypeQuery.isLoading || documentTypeQuery.isLoading || incidentCategoryQuery.isLoading || assessments.isLoading || requiredIncidentsQuery.isLoading || goalsQuery.isLoading) {
         return <Loading type='Modal' />
     }
@@ -55,18 +55,17 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
             console.error('assessments: ', assessments.error?.message)
         if (requiredIncidentsQuery.isError)
             console.error('required assessments: ', requiredIncidentsQuery.error?.message)
+        if (goalsQuery.isError)
+            console.error('goals query: ', goalsQuery.error?.message)
         return <LoadError type='Modal' />
     }
 
     const incidentTypes = incidentTypeQuery.data;
     const documentTypes = documentTypeQuery.data;
-    // const documentIncidentTypeId = documentTypes?.find((documentType) => documentType.name === 'Incident')?.id;
 
     const courtDocumentTypeId = documentTypes.find((d) => d.name === 'Court')?.id;
-    const dcfsDocumentTypeId = documentTypes.find((d) => d.name === 'DCFS')?.id;
-    const employerDocumentTypeId = documentTypes.find((d) => d.name === 'Employer')?.id;
 
-    if (!courtDocumentTypeId || !dcfsDocumentTypeId || !employerDocumentTypeId) {
+    if (!courtDocumentTypeId) {
         return <LoadError type='Modal' />
     }
 
@@ -395,7 +394,7 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                                             documentMutation.mutateAsync({
                                                 accountId: clientId,
                                                 url: res[0]?.fileUrl ?? '',
-                                                documentTypeId: dcfsDocumentTypeId,
+                                                documentTypeId: courtDocumentTypeId,
                                             })
                                             .catch((err) => {
                                                 console.error(err);
@@ -450,7 +449,7 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                                             documentMutation.mutateAsync({
                                                 accountId: clientId,
                                                 url: res[0]?.fileUrl ?? '',
-                                                documentTypeId: dcfsDocumentTypeId,
+                                                documentTypeId: courtDocumentTypeId,
                                             })
                                             .catch((err) => {
                                                 console.error(err);
@@ -525,7 +524,7 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                                             documentMutation.mutateAsync({
                                                 accountId: clientId,
                                                 url: res[0]?.fileUrl ?? '',
-                                                documentTypeId: employerDocumentTypeId,
+                                                documentTypeId: courtDocumentTypeId,
                                             })
                                             .catch((err) => {
                                                 console.error(err);
@@ -580,7 +579,7 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                                             documentMutation.mutateAsync({
                                                 accountId: clientId,
                                                 url: res[0]?.fileUrl ?? '',
-                                                documentTypeId: employerDocumentTypeId,
+                                                documentTypeId: courtDocumentTypeId,
                                             })
                                             .catch((err) => {
                                                 console.error(err);
