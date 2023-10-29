@@ -92,8 +92,6 @@ export const accountRouter = createTRPCRouter({
             const clinicalDirectorId = accountTypes.find((accountType) => accountType.name === 'Clinical Director')?.id;
             const clinicianId = accountTypes.find((accountType) => accountType.name === 'Clinician')?.id;
 
-            console.log('Cory is helping')
-
             // if the account being created is not a public type (client/agent) we need to authorize the transaction
             if (input.accountTypeId === adminId || input.accountTypeId === employeeId || input.accountTypeId === clinicalDirectorId || input.accountTypeId === clinicianId) {
                 // find the account for the user making the request
