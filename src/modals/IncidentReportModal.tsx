@@ -37,7 +37,7 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
     const documentLogMutation = api.documentLog.create.useMutation();
     const documentMutation = api.document.create.useMutation();
     const requiredAssessmentsCreate = api.requiredAssessments.create.useMutation();
-    const requiredGoalCreate = api.requiredGoal.create.useMutation();
+    // const requiredGoalCreate = api.requiredGoal.create.useMutation();
     const requiredIncidentCompleteMutation = api.requireIncident.complete.useMutation();
   
     if (incidentTypeQuery.isLoading || documentTypeQuery.isLoading || incidentCategoryQuery.isLoading || assessments.isLoading || requiredIncidentsQuery.isLoading || goalsQuery.isLoading) {
@@ -137,15 +137,15 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                 console.error(err);
             });
 
-            await requiredGoalCreate.mutateAsync({
-                clientId,
-                goalId: 'fixmeplease'
-            })
-            .catch((err) => {
-                // goalResult = false;
-                setShowSaveError(true);
-                console.error(err);
-            })
+            // await requiredGoalCreate.mutateAsync({
+            //     clientId,
+            //     goalId: 'fixmeplease'
+            // })
+            // .catch((err) => {
+            //     // goalResult = false;
+            //     setShowSaveError(true);
+            //     console.error(err);
+            // })
         }
 
         let requiredIncidentsResult = true;
