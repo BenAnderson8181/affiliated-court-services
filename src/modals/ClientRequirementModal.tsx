@@ -128,7 +128,7 @@ const ClientRequirementModal = ({ accountId, onClose, onRefresh}: Props) => {
             priceId = price?.id ?? '';
             clientPrice = price?.price ?? 0;
         }
-        else if (requirementType.name === 'Workshop') {
+        else if (requirementType.name.includes('Workshop')) {
             const price = prices?.find((p) => p.name === 'Workshop');
             priceId = price?.id ?? '';
             clientPrice = price?.price ?? 0;

@@ -1,8 +1,15 @@
 const requirementType = [
-    { name: 'Group' },
+    { name: 'Aggressive Driving Workshop' },
+    { name: 'AM Group' },
+    { name: 'Anger Management Workshop' },
+    { name: 'Cog Group' },
+    { name: 'Cognitive Restructuring Workshop' },
+    { name: 'DV Group' },
     { name: 'Individual' },
-    { name: 'Diversion Workshop' },
-    { name: 'Prime for Life' }
+    { name: 'Orientation Workshop' },
+    { name: 'Prime for Life' },
+    { name: 'Substance Awareness Workshop' },
+    { name: 'SUD Group' },
 ]
 
 export default requirementType;
