@@ -616,6 +616,7 @@ model Demographic {
     white           Int
     multi           Int
     not             Int
+    other           Int         @default(0)
 }
 
 model GoalAchievmentStatus {

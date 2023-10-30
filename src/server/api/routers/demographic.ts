@@ -46,6 +46,10 @@ export const demographicRouter = createTRPCRouter({
                     data = {'multi': (demographic?.black ?? 0) + 1 }
                     break;
 
+                case 'other':
+                    data = {'other': (demographic?.other ?? 0) + 1}
+                    break;
+
                 default:
                     data = {'not': (demographic?.not ?? 0) + 1 }
                     break;

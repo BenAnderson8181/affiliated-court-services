@@ -125,6 +125,12 @@ const DemographicQuestionnaire: React.FC<Props> = () => {
                         </label>
                     </div>
                     <div className="flex justify-start">
+                        <input className="peer" type="radio" name="demographic" id="other" value="9" onChange={() => setDemographic(() => 'other')} />
+                        <label className="flex justify-center cursor-pointer rounded-sm mr-3 peer-checked:bg-indigo-700 peer-checked:text-slate-100 px-6" htmlFor="other">
+                            Other
+                        </label>
+                    </div>
+                    <div className="flex justify-start">
                         <input className="peer" type="radio" name="demographic" id="not" value="8" onChange={() => setDemographic(() => 'not')} defaultChecked={true} />
                         <label className="flex justify-center cursor-pointer rounded-sm mr-3 peer-checked:bg-indigo-700 peer-checked:text-slate-100 px-6" htmlFor="not">
                             Prefer not to say
@@ -132,7 +138,7 @@ const DemographicQuestionnaire: React.FC<Props> = () => {
                     </div>
                 </div>
                 <br />
-                <p>Your response to the question regarding race/ethnicity is voluntary and will be treated as confidential. This information is being collected solely for the purpose of promoting equal employment opportunity and meeting government reporting requirements. Providing this information will in no way affect your employment status or any employment-related decisions. The data collected will be used in the aggregate and will not be individually identifiable. Thank you for your cooperation.</p>
+                <p>Your response to the question regarding race/ethnicity is voluntary and will be treated as confidential. This information is being collected solely for the purpose of research and/or meeting government reporting requirements. Providing this information will in no way affect your treatment plan.  The data collected will be used in the aggregate and will not be individually identifiable. Thank you for your cooperation.</p>
             </div>
             <div>
                 <button className="rounded border border-slate-200 px-3 py-1 text-slate-200 hover:scale-110 hover:shadow-lg hover:shadow-purple-900 hover:opacity-70 text-2xl mb-5" onClick={handleNext}>Next</button>

@@ -345,31 +345,31 @@ const AccountDashboard: NextPage = () => {
                     <div className="border border-yellow-200 rounded-sm p-5">
                     { 
                         nextStep === 'policies' && !masquerade &&
-                        <div>Policies & Procedures need to be signed.&nbsp;&nbsp;<Link href='/account/policies/eSignature'>Click here.</Link></div>
+                        <div>Policies & Procedures need to be signed.&nbsp;&nbsp;<Link href='/account/policies/eSignature' className="underline font-semibold">Click here.</Link></div>
                     }
                     {
                         nextStep === 'incident report' && !masquerade &&
-                        <div>An Incident Report needs to be completed.&nbsp;&nbsp;<p onClick={handleIncidentReport} className="hover:cursor-pointer inline hover:text-slate-300">Click here.</p></div>
+                        <div>An Incident Report needs to be completed.&nbsp;&nbsp;<p onClick={handleIncidentReport} className="hover:cursor-pointer inline hover:text-slate-300 underline font-semibold">Click here.</p></div>
                     }
                     {
                         nextStep === 'release of information' && !masquerade &&
-                        <div>Release of Information needs to be completed.&nbsp;&nbsp;<p onClick={() => router.push('/account/policies/releaseOfInformation').catch((err) => console.error(err))} className="hover:cursor-pointer inline hover:text-slate-300">Click here.</p></div>
+                        <div>Release of Information needs to be completed.&nbsp;&nbsp;<p onClick={() => router.push('/account/policies/releaseOfInformation').catch((err) => console.error(err))} className="hover:cursor-pointer inline hover:text-slate-300 underline font-semibold">Click here.</p></div>
                     }
                     {
                         nextStep === 'criminal background' && !masquerade &&
-                        <div>Consent to Criminal Background needs to be completed.&nbsp;&nbsp;<Link href='/account/policies/criminalBackground'>Click here.</Link></div>
+                        <div>Consent to Criminal Background needs to be completed.&nbsp;&nbsp;<Link href='/account/policies/criminalBackground' className="underline font-semibold">Click here.</Link></div>
                     }
                     {
                         nextStep === 'assessments' && !masquerade &&
-                        <div>Assessments need to be completed.&nbsp;&nbsp;<Link href='/account/assessments'>Click here.</Link></div>
+                        <div>Assessments need to be completed.&nbsp;&nbsp;<Link href='/account/assessments' className="underline font-semibold">Click here.</Link></div>
                     }
                     {
                         nextStep === 'evaluation' && !masquerade &&
-                        <div>An evaluation interview needs to be scheduled and completed.&nbsp;&nbsp;<Link href='/calendar'>Click here.</Link></div>
+                        <div>An evaluation interview needs to be scheduled and completed.&nbsp;&nbsp;<Link href='/calendar' className="underline font-semibold">Click here.</Link></div>
                     }
                     {
                         nextStep === 'goals' && !masquerade &&
-                        <div>Goals need to be completed.&nbsp;&nbsp;<Link href='/account/goals'>Click here.</Link></div>
+                        <div>Goals need to be completed.&nbsp;&nbsp;<Link href='/account/goals' className="underline font-semibold">Click here.</Link></div>
                     }
                     </div>
                 }
