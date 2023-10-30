@@ -22,7 +22,7 @@ const AboutUs: NextPage = () => {
                             <p className="font-bold font-serif text-2xl mt-7 ml-3 [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]">AFFILIATED COURT SERVICES</p>
                         </div>
                         <div className="pt-7">
-                            <Link href="/services" className="border border-purple-950 text-slate-100 bg-amber-400 p-2 rounded-xl text-xl font-extrabold shadow-lg shadow-black hover:shadow-md hover:shadow-black hover:scale-105 [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]" passHref>See our client services</Link>
+                            <Link href="/services" className="border border-purple-950 text-white bg-amber-500 p-2 rounded-xl text-2xl font-extrabold shadow-lg shadow-black hover:shadow-md hover:shadow-black hover:scale-105 [text-shadow:_0_2px_0_rgb(0_0_0_/_80%)]" passHref>See our client services</Link>
                         </div>
                     </div>
                 </section>

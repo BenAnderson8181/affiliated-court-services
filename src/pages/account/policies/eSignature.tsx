@@ -122,7 +122,7 @@ const ESignatureConsent: React.FC<Props> = () => {
             </div>
             { 
                 showErrorAlert &&
-                <div className="border border-yellow-300 round mt-4 p-3 text-slate-100 text-2xl">Your signature needs to be added and be big enough to save.</div>
+                <div className="border border-yellow-300 round mt-4 p-3 text-slate-100 text-2xl">Your signature needs to be added before moving forward.</div>
             }
             {
                 showSaveErrorAlert &&

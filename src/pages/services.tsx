@@ -22,7 +22,7 @@ const Services: NextPage = () => {
                             <p className="font-bold font-serif text-2xl mt-7 ml-3 [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]">AFFILIATED COURT SERVICES</p>
                         </div>
                         <div className="pt-7">
-                            <Link href="/services" className="border border-purple-950 text-slate-100 bg-amber-400 p-2 rounded-xl text-xl font-extrabold shadow-lg shadow-black hover:shadow-md hover:shadow-black hover:scale-105 [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]" passHref>See our client services</Link>
+                            <Link href="/services" className="border border-purple-950 text-white bg-amber-500 p-2 rounded-xl text-2xl font-extrabold shadow-lg shadow-black hover:shadow-md hover:shadow-black hover:scale-105 [text-shadow:_0_2px_0_rgb(0_0_0_/_80%)]" passHref>See our client services</Link>
                         </div>
                     </div>
                 </section>
@@ -74,49 +74,49 @@ const Services: NextPage = () => {
                         <h3 className="font-bold text-xl text-center mb-6">Diversion Workshops: </h3>
                         <div className="text-xl border border-purple-950 bg-white p-3 rounded-md shadow-sm shadow-purple-950 mb-16">
                             <div className="px-8">
-                                <h3 className="font-semibold text-center mb-2">Anger Management</h3>
+                                <h3 className="font-bold mb-2">Anger Management</h3>
                                 <p>
                                     Learning where anger comes from, what the consequences are, and how to choose to respond rather than react.
                                 </p>
                             </div>
                             <div className="mt-10 px-8">
-                                <h3 className="font-semibold text-center mb-2">Conflict Resolution</h3>
+                                <h3 className="font-bold mb-2">Conflict Resolution</h3>
                                 <p>
                                     Learning that there are many different ways to resolve conflicts, from choosing to avoid issues that don’t really matter, diffusing dangerous situations, negotiating without giving up one’s values, to directly confronting abuses.
                                 </p>
                             </div>
                             <div className="mt-10 px-8">
-                                <h3 className="font-semibold text-center mb-2">Assertiveness Communication Skills</h3>
+                                <h3 className="font-bold mb-2">Assertiveness Communication Skills</h3>
                                 <p>
                                     Learning to communicate in open, honest and appropriate ways in which one maintains respect for self, as well as respect for the other person.
                                 </p>
                             </div>
                             <div className="mt-10 px-8">
-                                <h3 className="font-semibold text-center mb-2">Relationship Skills</h3>
+                                <h3 className="font-bold mb-2">Relationship Skills</h3>
                                 <p>
                                     Learning to build a relationship based on honesty, trust and equality.
                                 </p>
                             </div>
                             <div className="mt-10 px-8">
-                                <h3 className="font-semibold text-center mb-2">Cognitive Restructuring</h3>
+                                <h3 className="font-bold mb-2">Cognitive Restructuring</h3>
                                 <p>
                                     Learning to recognize thoughts and beliefs that are causing problems for ourselves and creating mental and emotional balance by changing our perspective about one’s life circumstances.
                                 </p>
                             </div>
                             <div className="mt-10 px-8">
-                                <h3 className="font-semibold text-center mb-2">Substance Use Awareness</h3>
+                                <h3 className="font-bold mb-2">Substance Use Awareness</h3>
                                 <p>
                                     Covers basic information about the effects and negative consequences of misusing drugs and alcohol.
                                 </p>
                             </div>
                             <div className="mt-10 px-8">
-                                <h3 className="font-semibold text-center mb-2">Prime For Life</h3>
+                                <h3 className="font-bold mb-2">Prime For Life</h3>
                                 <p>
                                     Helping individuals reduce their risk of alcohol and drug related problems by learning how these issues develop, what we can do to prevent them, and why sometimes we need help.   
                                 </p>
                             </div>
                             <div className="mt-10 px-8">
-                                <h3 className="font-semibold text-center mb-2">DUI Victim Impact Panel</h3>
+                                <h3 className="font-bold mb-2">DUI Victim Impact Panel</h3>
                                 <p>
                                     Provides a forum for people affected by impaired driving to describe to DUI offenders the impact it has had on their lives and on the lives of their families, friends and neighbors.
                                 </p>

@@ -88,7 +88,7 @@ const InformedConsent: React.FC<Props> = () => {
                     <li>Recommendations for treatment are based on standard assessments, police and court documents, and input from the therapist after an individual interview with you.  Treatment plans are subject to change according to your progress in therapy or new information from court or probation agents.</li>
                     <li>You have the right to terminate treatment at any time and will be expected to pay only for those services received.  Your termination will be reported to the appropriate court agents.</li>
                     <li>
-                        Your participation in our program is confidential within the limits of the laws of the State of Utah, and relevant professional codes.  Information you disclose during treatment will not be revealed to anyone without your written permission, with the following exceptions:
+                        Your participation in our program is confidential within the limits of the laws of the State of Utah and relevant professional codes.  Information you disclose during treatment will not be revealed to anyone without your written permission, with the following exceptions:
                         <ul className="pl-6">
                             <li>∘&nbsp;If you request your information to be submitted to an insurance company on your behalf, information about your diagnosis and treatment plan may be revealed to your insurance carrier.</li>
                             <li>∘&nbsp;Your therapist is required by law to report any “reasonable suspicion” that a child or vulnerable adult is being abused in any manner.</li>
@@ -97,7 +97,7 @@ const InformedConsent: React.FC<Props> = () => {
                         </ul>
                     </li>
                     <li>You have the right to review your official records at any time, however, be aware that these records belong to the Treatment Center and may not be removed from the Treatment Center.  If you wish, your Therapist or the Clinical Director will review your records with you, and answer any questions concerning the information contained.</li>
-                    <li>If you request, your records may be released to any person or agency you designate by filling out and signing an “Authorization for Release of Protected Health Information.”</li>
+                    <li>If you request, your records may be released to any person or agency you designate by filling out and signing an “Authorization for Release of Protected Health Information” form.</li>
                 </ul>
                 <br />
                 <p>I understand the information contained in this Informed Consent agreement and agree to all conditions stated.</p>
@@ -121,7 +121,7 @@ const InformedConsent: React.FC<Props> = () => {
             </div>
             { 
                 showErrorAlert &&
-                <div className="border border-yellow-300 round mt-4 p-3 text-slate-100 text-2xl">Your signature needs to be added and be big enough to save.</div>
+                <div className="border border-yellow-300 round mt-4 p-3 text-slate-100 text-2xl">Your signature needs to be added before moving forward.</div>
             }
             {
                 showSaveErrorAlert &&

@@ -85,7 +85,7 @@ const ClientRightsConsent: React.FC<Props> = () => {
                 <ul className="list-disc pl-8">
                     <li>
                         You have the right to privacy regarding your participation in this program, with the following exceptions according to Utah State Law:
-                        <ul className="list-disc pl-6">
+                        <ul className="pl-6 list-none">
                             <li>∘&nbsp;If we become aware of abuse to children or vulnerable adults, or imminent danger of harming yourself or another person, we are required to report abuse and take reasonable steps to prevent harm.</li>
                             <li>∘&nbsp;Any and all other situations required to be reported by law in the State of Utah.</li>
                         </ul>
@@ -121,7 +121,7 @@ const ClientRightsConsent: React.FC<Props> = () => {
             </div>
             { 
                 showErrorAlert &&
-                <div className="border border-yellow-300 round mt-4 p-3 text-slate-100 text-2xl">Your signature needs to be added and be big enough to save.</div>
+                <div className="border border-yellow-300 round mt-4 p-3 text-slate-100 text-2xl">Your signature needs to be added before moving forward.</div>
             }
             {
                 showSaveErrorAlert &&

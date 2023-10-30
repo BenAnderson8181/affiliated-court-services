@@ -88,9 +88,9 @@ const ConsumerAgreementConsent: React.FC<Props> = () => {
                     <li>Participants will be on time for all sessions.  The meeting will be closed after 5 minutes, and no further admittance will be allowed for that session.</li>
                     <li>Groups and individual sessions are 50 minutes in length.  Leaving the group before the session ends will constitute an absence.  Payment for that session will be forfeited.</li>
                     <li>Workshops are typically 4 hours in length with a break in the middle. Leaving the workshop before the session ends will constitute an absence. Payment for that workshop will be forfeited.</li>
-                    <li>Prime For Life is a total of 16 hours that can be broken down into sessions of various lengths agreed upon between the Consumer and United Court Services. Leaving the group before the session ends will constitute an absence. Payment for that session will be forfeited.</li>
+                    <li>Prime For Life is a total of 16 hours that can be broken down into sessions of various lengths agreed upon between the Consumer and Affiliated Court Services. Leaving the group before the session ends will constitute an absence. Payment for that session will be forfeited.</li>
                     <li>We will abide by Utah and City smoking regulations in accordance with the Utah Clean Air Act, Title 26, Chapter 18, Section 3.  In short, smoking is not allowed inside the building or within 25 feet of the building.</li>
-                    <li>Physical or verbal abuse toward group leaders, staff, or other clients will not be tolerated.  This includes discriminatory language regarding any specific population.</li>
+                    <li>Physical or verbal abuse toward group leaders, staff, or other clients will not be tolerated.  This includes discriminatory language regarding any protected class.</li>
                     <li>Participants will not access services while under the influence of alcohol or illicit substances.</li>
                     <li>Participants will not access services while in possession of dangerous weapons.</li>
                     <li>Information discussed during group sessions is to remain confidential.</li>
@@ -118,7 +118,7 @@ const ConsumerAgreementConsent: React.FC<Props> = () => {
             </div>
             { 
                 showErrorAlert &&
-                <div className="border border-yellow-300 round mt-4 p-3 text-slate-100 text-2xl">Your signature needs to be added and be big enough to save.</div>
+                <div className="border border-yellow-300 round mt-4 p-3 text-slate-100 text-2xl">Your signature needs to be added before moving forward.</div>
             }
             {
                 showSaveErrorAlert &&
