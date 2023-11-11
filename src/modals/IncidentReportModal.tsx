@@ -113,8 +113,8 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
         setShowAssessmentError(false);
         setShowGoalError(false);
 
-        if (selectedType == incidentTypes?.find((incidentType) => incidentType.name === 'Court Referred')?.id ) {
-            console.log('Court Ordered')
+        if (selectedType == incidentTypes?.find((incidentType) => incidentType.name === 'Court Referred')?.id ||
+            selectedType == incidentTypes?.find((incidentType) => incidentType.name === 'DCFS Referred')?.id) {
             if (fileURL.length > 0) {
                 // Save to the Document Log
                 documentLogMutation.mutateAsync({
@@ -194,7 +194,6 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                         console.error(err);
                     });
                 }
-                
             }
         }
 
@@ -342,58 +341,29 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                     selectedType == incidentTypes?.find((incidentType) => incidentType.name === 'DCFS Referred')?.id &&
                     <>
                         <div className="mt-4">
-                            <h1>Welcome to DCFS Referred Incident Report</h1>
-                            <p>Please upload the DCFS family plan associated with your case</p>
+                            <h1 className="flex justify-center mb-2 font-semibold text-xl">DCFS Referred Incident Report</h1>
+                            <p>Please upload the DCFS family plan associated with your case.  If you don&apos;t have it now you can continue but you will not be able to receive your certificate of completion without it.</p>
                             <div className="mt-4">
-                                <h1>Please check each box below that applies.</h1>
-                                <h1>Checking the correct checkboxes is your responsibilty and affects the completion certificates.</h1>
-                                <div className="pl-6 mt-3"><label>Domestic Violence:&nbsp;&nbsp;<input type="checkbox" onChange={handleDomesticViolenceChange} className="m-auto"></input></label></div>
-                                <div className="pl-6 mt-3"><label>Theft:&nbsp;&nbsp;<input type="checkbox" onChange={handleTheftChange}></input></label></div>
-                                <div className="pl-6 mt-3"><label>Drug and Alcohol:&nbsp;&nbsp;<input type="checkbox" onChange={handleDrugAndAlcoholChange}></input></label></div>
+                                <p className="flex justify-center font-medium text-lg">Please check each box below that applies.  At least one needs to be selected.</p>
+                                <p>Checking the correct checkboxes is your responsibilty and affects the certificate of completion.</p>
+                                <div className="flex justify-between mt-4 px-4">
+                                    <div className="font-bold"><label>Domestic Violence:&nbsp;&nbsp;<input type="checkbox" onChange={handleDomesticViolenceChange} className="m-auto"></input></label></div>
+                                    <div className="font-bold"><label>Theft:&nbsp;&nbsp;<input type="checkbox" onChange={handleTheftChange}></input></label></div>
+                                    <div className="font-bold"><label>Drug and Alcohol:&nbsp;&nbsp;<input type="checkbox" onChange={handleDrugAndAlcoholChange}></input></label></div>
+                                </div>
                             </div>
                             <div className="mt-6"> 
                                 <UploadButton<OurFileRouter>
                                     endpoint="imageUploader"
                                     onClientUploadComplete={(res) => {
                                         if (res !== undefined && res.length > 0) {
-                                            // Save to the Document Log
-                                            documentLogMutation.mutateAsync({
-                                                accountId: clientId,
-                                                url: res[0]?.fileUrl ?? '',
-                                                action: 'Incident Report Upload'
-                                            })
-                                            .catch((err) => {
-                                                console.error(err);
-                                                setShowSaveError(true);
-                                            });
-
-                                            // Save the Document to the client
-                                            documentMutation.mutateAsync({
-                                                accountId: clientId,
-                                                url: res[0]?.fileUrl ?? '',
-                                                documentTypeId: courtDocumentTypeId,
-                                            })
-                                            .catch((err) => {
-                                                console.error(err);
-                                                setShowSaveError(true);
-                                            });
-
-                                            // // Save to the Incident table for client next steps
-                                            // incidentMutation.mutateAsync({
-                                            //     accountId: clientId,
-                                            //     url: res[0]?.fileUrl!,
-                                            //     incidentTypeId: selectedType,
-                                            //     completed: true,
-                                            //     comment: text,
-                                            //     incidentCategoryId: category,
-                                            // })
-                                            // .catch((error) => {
-                                            //     setShowSaveError(true);
-                                            // });
+                                            console.log('res: ', res)
+                                            setFileURL(res[0]?.url ?? 'Default');
+                                            setShowUploadSuccess(true);
+                                            setTimeout(() => {
+                                                setShowUploadSuccess(false);
+                                            }, 5000);
                                         }
-
-                                        console.log("Files: ", res);
-                                        alert("Upload Completed");
                                     }}
                                         onUploadError={(error: Error) => {
                                             setShowUploadError(true);
@@ -411,44 +381,13 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                                     endpoint="imageUploader"
                                     onClientUploadComplete={(res) => {
                                         if (res !== undefined && res.length > 0) {
-                                            // Save to the Document Log
-                                            documentLogMutation.mutateAsync({
-                                                accountId: clientId,
-                                                url: res[0]?.fileUrl ?? '',
-                                                action: 'Incident Report Upload'
-                                            })
-                                            .catch((err) => {
-                                                console.error(err);
-                                                setShowSaveError(true);
-                                            });
-
-                                            // Save the Document to the client
-                                            documentMutation.mutateAsync({
-                                                accountId: clientId,
-                                                url: res[0]?.fileUrl ?? '',
-                                                documentTypeId: courtDocumentTypeId,
-                                            })
-                                            .catch((err) => {
-                                                console.error(err);
-                                                setShowSaveError(true);
-                                            });
-
-                                            // // Save to the Incident table for client next steps
-                                            // incidentMutation.mutateAsync({
-                                            //     accountId: clientId,
-                                            //     url: res[0]?.fileUrl!,
-                                            //     incidentTypeId: selectedType,
-                                            //     completed: true,
-                                            //     comment: text,
-                                            //     incidentCategoryId: category,
-                                            // })
-                                            // .catch((error) => {
-                                            //     setShowSaveError(true);
-                                            // });
+                                            console.log('res: ', res)
+                                            setFileURL(res[0]?.url ?? 'Default');
+                                            setShowUploadSuccess(true);
+                                            setTimeout(() => {
+                                                setShowUploadSuccess(false);
+                                            }, 5000);
                                         }
-
-                                        console.log("Files: ", res);
-                                        alert("Upload Completed");
                                     }}
                                     onUploadError={(error: Error) => {
                                         setShowUploadError(true);
@@ -462,7 +401,10 @@ const IncidentReportModal = ({clientId, onClose, refetchNextStep}: Props) => {
                                 />
                             </div>
                             <div>
-                                <textarea className="w-full h-72 border border-gray-300 rounded-md shadow-sm shadow-purple-900 p-2 mt-4" placeholder="Please add any comments you want us to see here." onChange={handleChange} value={text} />
+                                <textarea className="w-full h-48 border border-gray-300 rounded-md shadow-sm shadow-purple-900 p-2 mt-4" placeholder="Please add any comments you want us to see here." onChange={handleChange} value={text} />
+                            </div>
+                            <div className="mb-4 flex justify-end">
+                                <button className="bg-slate-100 text-slate-700 border border-indigo-700 rounded-md shadow-sm shadow-purple-900 p-2 mt-4 hover:scale-110 hover:shadow-lg hover:shadow-purple-900 hover:opacity-70" onClick={handleCommentSave}>Submit</button>
                             </div>
                         </div>
                     </>

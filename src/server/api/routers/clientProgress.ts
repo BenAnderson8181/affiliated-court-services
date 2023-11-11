@@ -65,16 +65,10 @@ export const clientProgressRouter = createTRPCRouter({
             if (incompleteIncidents.length > 0)
                 return 'incident report';
 
-            console.log('Past 2')
-
             const requiredIncidents = await ctx.prisma.requireIncident.findMany({ where: { clientId, completed: false }});
-
-            console.log('RequiredIncidents: ', requiredIncidents)
             
             if (requiredIncidents.length > 0)
                 return 'incident report';
-
-            console.log('Past 3')
 
             // release of information and criminal background check are conditionally required based on incident type
             // the next section of code is here to see if they have been signed or rejected but only self referred allows them to continue if rejected
