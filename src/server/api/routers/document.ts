@@ -10,6 +10,9 @@ export const documentRouter = createTRPCRouter({
                 accountId: z.string(),
                 documentTypeId: z.string(),
                 url: z.string(),
+                name: z.string(),
+                key: z.string(),
+                size: z.number()
             })
         )
         .mutation(async ({ctx, input}) => {
@@ -21,6 +24,9 @@ export const documentRouter = createTRPCRouter({
                         }
                     },
                     url: input.url,
+                    name: input.name,
+                    key: input.key,
+                    size: input.size,
                     documentType: {
                         connect: {
                             id: input.documentTypeId
@@ -100,4 +106,19 @@ export const documentRouter = createTRPCRouter({
             return document;
         }
     ),
+    list: protectedProcedure
+        .input(
+            z.object({
+                accountId: z.string()
+            })
+        )
+        .query(async ({ ctx, input }) => {
+            const documents = await ctx.prisma.document.findMany({
+                where: {
+                    accountId: input.accountId
+                }
+            });
+
+            return documents;
+        })
 });

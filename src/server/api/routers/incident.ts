@@ -12,8 +12,10 @@ export const incidentRouter = createTRPCRouter({
                 incidentTypeId: z.string(),
                 completed: z.boolean(),
                 domesticViolence: z.boolean(),
-                theft: z.boolean(),
                 drugsAlcohol: z.boolean(),
+                cognitiveRestructure: z.boolean(),
+                mentalHealth: z.boolean(),
+                other: z.boolean()
             })
         )
         .mutation(async ({ ctx, input }) => {
@@ -78,8 +80,10 @@ export const incidentRouter = createTRPCRouter({
 
             const incidentCategories = await ctx.prisma.incidentCategory.findMany();
             const domesticViolenceId = incidentCategories.find((category) => category.name === 'Domestic Violence')?.id;
-            const theftId = incidentCategories.find((category) => category.name === 'Theft')?.id;
+            const cognitiveRestructureId = incidentCategories.find((category) => category.name === 'Cognitive Restructure')?.id;
             const drugsAlcoholId = incidentCategories.find((category) => category.name === 'Drugs/Alcohol')?.id;
+            const mentalHealthId = incidentCategories.find((category) => category.name === 'Mental Health')?.id;
+            const otherId = incidentCategories.find((category) => category.name === 'Other')?.id;
 
             if (input.domesticViolence) {
                 const dv = await ctx.prisma.clientIncidents.create({ 
@@ -106,8 +110,8 @@ export const incidentRouter = createTRPCRouter({
                     throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to create the client incident.' });
             }
 
-            if (input.theft) {
-                const theft = await ctx.prisma.clientIncidents.create({
+            if (input.cognitiveRestructure) {
+                const cognitiveRestructure = await ctx.prisma.clientIncidents.create({
                     data: {
                         account: {
                             connect: {
@@ -121,13 +125,13 @@ export const incidentRouter = createTRPCRouter({
                         },
                         incidentCategory: {
                             connect: {
-                                id: theftId,
+                                id: cognitiveRestructureId,
                             },
                         },
                     },
                 });
 
-                if (!theft)
+                if (!cognitiveRestructure)
                     throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to create the client incident.' });
             }
 
@@ -153,6 +157,56 @@ export const incidentRouter = createTRPCRouter({
                 });
 
                 if (!drugsAlcohol)
+                    throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to create the client incident.' });
+            }
+
+            if (input.mentalHealth) {
+                const mentalHealth = await ctx.prisma.clientIncidents.create({
+                    data: {
+                        account: {
+                            connect: {
+                                id: input.accountId,
+                            },
+                        },
+                        incident: {
+                            connect: {
+                                id: incidentCreate.id,
+                            },
+                        },
+                        incidentCategory: {
+                            connect: {
+                                id: mentalHealthId,
+                            },
+                        },
+                    },
+                });
+
+                if (!mentalHealth)
+                    throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to create the client incident.' });
+            }
+
+            if (input.other) {
+                const other = await ctx.prisma.clientIncidents.create({
+                    data: {
+                        account: {
+                            connect: {
+                                id: input.accountId,
+                            },
+                        },
+                        incident: {
+                            connect: {
+                                id: incidentCreate.id,
+                            },
+                        },
+                        incidentCategory: {
+                            connect: {
+                                id: otherId,
+                            },
+                        },
+                    },
+                });
+
+                if (!other)
                     throw new TRPCError({ code: 'INTERNAL_SERVER_ERROR', message: 'Failed to create the client incident.' });
             }
 

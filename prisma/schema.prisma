@@ -222,6 +222,9 @@ model Document {
     createdAt       DateTime        @default(now())
     updatedAt       DateTime        @updatedAt
     url             String
+    name            String
+    key             String
+    size            Int
     documentTypeId  String
     documentType    DocumentType    @relation(fields: [documentTypeId], references: [id])
     accountId       String
@@ -236,6 +239,9 @@ model DocumentLog {
     createdAt       DateTime        @default(now())
     updatedAt       DateTime        @updatedAt
     url             String
+    name            String
+    key             String
+    size            Int
     accountId       String
     account         Account         @relation(fields: [accountId], references: [id])
     action          String

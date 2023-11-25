@@ -1,8 +1,9 @@
 const incidentCategory = [
     { name: 'Domestic Violence' },
-    { name: 'Theft' },
     { name: 'Drugs/Alcohol' },
-    { name: 'DUI' }
+    { name: 'Cognitive Restructure' },
+    { name: 'Mental Health' },
+    { name: 'Other' }
 ];
 
 export default incidentCategory;
