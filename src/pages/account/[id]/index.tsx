@@ -36,6 +36,7 @@ import ProgressReportModal from "~/modals/ProgressReportModal";
 import ClientAlertModal from "~/modals/ClientAlertModal";
 import ParticipationNoteModal from "~/modals/ParticipationNoteModal";
 import ClientUpdateModal from "~/modals/ClientUpdateModal";
+import DocumentModal from "~/modals/DocumentModal";
 
 const AccountDashboard: NextPage = () => {
     const router = useRouter();
@@ -74,6 +75,7 @@ const AccountDashboard: NextPage = () => {
     const [clientAlertModalIsOpen, setClientAlertModalIsOpen] = useState(false);
     const [participationNoteModalIsOpen, setParticipationNoteModalIsOpen] = useState(false);
     const [updateClientModalIsOpen, setUpdateClientModalIsOpen] = useState(false);
+    const [documentModalIsOpen, setDocumentModalIsOpen] = useState(false);
 
     const userId = user?.id ?? '';
     if (!userId || userId === '' || userId == undefined)
@@ -96,6 +98,7 @@ const AccountDashboard: NextPage = () => {
     const accountPolicyQuery = api.accountPolicy.list.useQuery({ accountId });
     const clientAlertQuery = api.clientAlert.get.useQuery({ accountId });
     const clientParticipationNoteQuery = api.clientParticipationNote.get.useQuery({ accountId });
+    const documentsQuery = api.document.list.useQuery({ accountId });
 
     if (accountQuery.isLoading ||
         clientProgressQuery.isLoading ||
@@ -111,7 +114,8 @@ const AccountDashboard: NextPage = () => {
         requiredGoalQuery.isLoading ||
         accountPolicyQuery.isLoading ||
         clientAlertQuery.isLoading ||
-        clientParticipationNoteQuery.isLoading) {
+        clientParticipationNoteQuery.isLoading ||
+        documentsQuery.isLoading) {
             return <Loading type='Page' />
     }
 
@@ -129,7 +133,8 @@ const AccountDashboard: NextPage = () => {
         requiredGoalQuery.isError ||
         accountPolicyQuery.isError ||
         clientAlertQuery.isError ||
-        clientParticipationNoteQuery.isError) {
+        clientParticipationNoteQuery.isError ||
+        documentsQuery.isError) {
             return <LoadError type="Page" />
     }
 
@@ -150,6 +155,7 @@ const AccountDashboard: NextPage = () => {
     const accountPolicies = accountPolicyQuery.data.filter((p) => p.policy?.title !== 'Demographic');
     const clientAlert = clientAlertQuery.data;
     const clientParticipationNote = clientParticipationNoteQuery.data;
+    const documents = documentsQuery.data;
 
     const totalRequired = clientRequirements.reduce((acc, cur) => { return acc + cur.requiredAmount}, 0);
     const totalFulfilled = clientRequirements.reduce((acc, cur) => { return acc + cur.fulfilledAmount}, 0);
@@ -312,6 +318,14 @@ const AccountDashboard: NextPage = () => {
 
     const refreshClient = () => {
         accountQuery.refetch();
+    }
+
+    const handleDocument = () => {
+        setDocumentModalIsOpen(true);
+    }
+
+    const refreshDocuments = () => {
+        documentsQuery.refetch();
     }
 
     // Repeat this for each type except client
@@ -625,6 +639,23 @@ const AccountDashboard: NextPage = () => {
                     }
                 </div>
             </div>
+            <div className="w-full px-12 text-xl mt-2 relative">
+                <p className="pl-3 mb-2">Documents:</p>
+                <p className="absolute -top-1 right-2 cursor-pointer hover:scale-105 hover:opacity-80"><RiAddBoxFill size='2.5rem' className="text-slate-100" onClick={handleDocument}/></p>
+                <div className="grid grid-cols-2 gap-3 border-2 border-indigo-700 rounded-lg shadow-lg shadow-indigo-950 bg-slate-200 text-slate-700 p-6 h-fit">
+                    {
+                        documents.length === 0 &&
+                        <div>No documents have been uploaded.</div>
+                    }
+                    {
+                        documents?.map((document) => {
+                            return <div key={document.id}>
+                                <Link href={document.url} target="_blank">{document.name}</Link>
+                            </div>
+                        })
+                    }
+                </div>
+            </div>
             <Modal
                 onClose={() => setIncidentReportModalIsOpen(false)}
                 isOpen={incidentReportModalIsOpen}
@@ -765,6 +796,12 @@ const AccountDashboard: NextPage = () => {
                 isOpen={updateClientModalIsOpen}
             >
                 <ClientUpdateModal id={accountId} onClose={() => setUpdateClientModalIsOpen(false)} onRefresh={refreshClient} />
+            </Modal>
+            <Modal
+                onClose={() => setDocumentModalIsOpen(false)}
+                isOpen={documentModalIsOpen}
+            >
+                <DocumentModal accountId={accountId} onClose={() => setDocumentModalIsOpen(false)} onRefresh={refreshDocuments} />
             </Modal>
         </div>
     );
